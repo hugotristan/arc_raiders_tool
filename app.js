@@ -360,7 +360,9 @@
                   </div>
                 </div>
               ` : ""}
-              <a href="${item.sourceUrl}" target="_blank" rel="noreferrer">Recipe page</a>
+            </div>
+            <div class="craft-source-row">
+              <a href="${item.sourceUrl}" target="_blank" rel="noreferrer">Detailed source page</a>
             </div>
           </div>
         </article>
@@ -542,7 +544,7 @@
         <ul class="hints">
           ${hints.map((hint) => `<li>${escapeHtml(hint)}</li>`).join("")}
         </ul>
-        <div class="source-links">
+        <div class="source-links material-source-links">
           ${source.sourceUrl ? `<a href="${source.sourceUrl}" target="_blank" rel="noreferrer">Detailed source page</a>` : ""}
         </div>
       </article>

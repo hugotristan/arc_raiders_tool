@@ -327,6 +327,8 @@ select {
 }
 
 .craft-body {
+  display: flex;
+  flex-direction: column;
   min-width: 0;
 }
 
@@ -401,6 +403,16 @@ select {
 
 .recipe-block {
   margin-bottom: 10px;
+}
+
+.craft-source-row {
+  margin-top: auto;
+  padding-top: 12px;
+}
+
+.craft-source-row a,
+.material-source-links a {
+  font-size: 0.82rem;
 }
 
 .card-actions {
@@ -610,6 +622,10 @@ select {
   flex-wrap: wrap;
   gap: 8px;
   align-items: center;
+}
+
+.material-source-links {
+  margin-top: 16px;
 }
 
 a {
