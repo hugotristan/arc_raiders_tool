@@ -2,6 +2,9 @@
   const data = window.ARC_DATA;
   const craftables = data.craftables.slice().sort((a, b) => a.name.localeCompare(b.name));
   const rarityOrder = { Common: 1, Uncommon: 2, Rare: 3, Epic: 4, Legendary: 5 };
+  const romanByTier = ["", "I", "II", "III", "IV"];
+  const tierByRoman = { I: 1, II: 2, III: 3, IV: 4 };
+  const craftableByName = new Map(craftables.map((item) => [item.name.toLowerCase(), item]));
   const state = loadState();
 
   const els = {
@@ -22,6 +25,7 @@
     toast: document.querySelector("#toast")
   };
 
+  normalizePlanState();
   initFilters();
   renderSources();
   render();
@@ -56,7 +60,7 @@
   }
 
   function renderCatalog() {
-    const term = els.search.value.trim().toLowerCase();
+    const term = normalizeSearch(els.search.value.trim());
     const type = els.type.value;
     const rarity = els.rarity.value;
     const items = craftables.filter((item) => {
@@ -66,9 +70,10 @@
         item.rarity,
         item.description,
         item.blueprint,
-        item.materials.map((material) => material.name).join(" ")
+        item.materials.map((material) => material.name).join(" "),
+        searchAliases(item)
       ].join(" ").toLowerCase();
-      return (!term || haystack.includes(term)) &&
+      return (!term || normalizeSearch(haystack).includes(term)) &&
         (type === "All" || item.type === type) &&
         (rarity === "All" || item.rarity === rarity);
     });
@@ -79,10 +84,9 @@
     }
 
     els.catalog.innerHTML = items.map((item) => {
-      const qty = state.plan[item.id] || 0;
-      const recipe = item.materials.map((material) =>
-        `<span class="rarity-${material.rarity}">${escapeHtml(material.name)} x${material.qty}</span>`
-      ).join("");
+      const tier = getTierInfo(item);
+      const hasScratch = canCalculateScratchCost(item);
+      const directLabel = tier && tier.tier > 1 ? `${tier.series} ${romanByTier[tier.tier - 1]} -> ${item.name}` : "Craft";
       return `
         <article class="craft-card">
           <div class="thumb">${item.image ? `<img src="${item.image}" alt="${escapeHtml(item.name)}">` : ""}</div>
@@ -96,13 +100,33 @@
               ${item.level ? `<span>Bench ${item.level}</span>` : ""}
               ${item.blueprint ? `<span>Blueprint</span>` : ""}
             </div>
-            <div class="recipe">${recipe}</div>
-            <div class="card-actions">
-              <div class="stepper" data-id="${item.id}">
-                <button type="button" data-action="down" title="Remove one">-</button>
-                <output>${qty}</output>
-                <button type="button" data-action="up" title="Add one">+</button>
+            <div class="recipe-block">
+              <div class="recipe-title">${escapeHtml(directLabel)}</div>
+              <div class="recipe">${formatRecipe(item.materials)}</div>
+              ${hasScratch ? `
+                <div class="recipe-title">From scratch</div>
+                <div class="recipe">${formatRecipe(cumulativeMaterials(item))}</div>
+              ` : ""}
+            </div>
+            <div class="card-actions stacked">
+              <div class="plan-control">
+                <span>${tier && tier.tier > 1 ? "Upgrade" : "Plan"}</span>
+                <div class="stepper" data-id="${item.id}" data-mode="direct">
+                  <button type="button" data-action="down" title="Remove one">-</button>
+                  <output>${getPlanQty(item.id, "direct")}</output>
+                  <button type="button" data-action="up" title="Add one">+</button>
+                </div>
               </div>
+              ${hasScratch ? `
+                <div class="plan-control">
+                  <span>From 0</span>
+                  <div class="stepper" data-id="${item.id}" data-mode="scratch">
+                    <button type="button" data-action="down" title="Remove one">-</button>
+                    <output>${getPlanQty(item.id, "scratch")}</output>
+                    <button type="button" data-action="up" title="Add one">+</button>
+                  </div>
+                </div>
+              ` : ""}
               <a href="${item.sourceUrl}" target="_blank" rel="noreferrer">Recipe page</a>
             </div>
           </div>
@@ -112,12 +136,8 @@
 
     els.catalog.querySelectorAll(".stepper button").forEach((button) => {
       button.addEventListener("click", () => {
-        const id = button.closest(".stepper").dataset.id;
-        const next = Math.max(0, (state.plan[id] || 0) + (button.dataset.action === "up" ? 1 : -1));
-        if (next) state.plan[id] = next;
-        else delete state.plan[id];
-        persist();
-        render();
+        const stepper = button.closest(".stepper");
+        updatePlan(stepper.dataset.id, stepper.dataset.mode || "direct", button.dataset.action === "up" ? 1 : -1);
       });
     });
   }
@@ -136,9 +156,9 @@
       <div class="selected-row">
         <div>
           <strong>${escapeHtml(entry.item.name)}</strong>
-          <span class="meta">${escapeHtml(entry.item.type)} - ${escapeHtml(entry.item.rarity)}</span>
+          <span class="meta">${escapeHtml(entry.item.type)} - ${escapeHtml(entry.item.rarity)} - ${escapeHtml(modeLabel(entry))}</span>
         </div>
-        <div class="stepper" data-id="${entry.item.id}">
+        <div class="stepper" data-id="${entry.item.id}" data-mode="${entry.mode}">
           <button type="button" data-action="down" title="Remove one">-</button>
           <output>${entry.qty}</output>
           <button type="button" data-action="up" title="Add one">+</button>
@@ -148,12 +168,8 @@
 
     els.selectedList.querySelectorAll(".stepper button").forEach((button) => {
       button.addEventListener("click", () => {
-        const id = button.closest(".stepper").dataset.id;
-        const next = Math.max(0, (state.plan[id] || 0) + (button.dataset.action === "up" ? 1 : -1));
-        if (next) state.plan[id] = next;
-        else delete state.plan[id];
-        persist();
-        render();
+        const stepper = button.closest(".stepper");
+        updatePlan(stepper.dataset.id, stepper.dataset.mode || "direct", button.dataset.action === "up" ? 1 : -1);
       });
     });
   }
@@ -206,8 +222,8 @@
 
   function aggregateMaterials() {
     const totals = new Map();
-    selectedItems().forEach(({ item, qty }) => {
-      item.materials.forEach((material) => {
+    selectedItems().forEach(({ materials, qty }) => {
+      materials.forEach((material) => {
         const current = totals.get(material.name) || {
           name: material.name,
           rarity: material.rarity,
@@ -232,9 +248,13 @@
 
   function selectedItems() {
     return Object.entries(state.plan)
-      .map(([id, qty]) => ({ item: craftables.find((craftable) => craftable.id === id), qty }))
+      .map(([key, qty]) => {
+        const [id, mode = "direct"] = key.split("|");
+        const item = craftables.find((craftable) => craftable.id === id);
+        return { item, mode, qty, materials: item ? materialsForMode(item, mode) : [] };
+      })
       .filter((entry) => entry.item && entry.qty > 0)
-      .sort((a, b) => a.item.name.localeCompare(b.item.name));
+      .sort((a, b) => a.item.name.localeCompare(b.item.name) || a.mode.localeCompare(b.mode));
   }
 
   async function copyList() {
@@ -264,6 +284,108 @@
     els.toast.textContent = message;
     els.toast.classList.add("show");
     window.setTimeout(() => els.toast.classList.remove("show"), 1800);
+  }
+
+  function normalizePlanState() {
+    const nextPlan = {};
+    Object.entries(state.plan || {}).forEach(([key, qty]) => {
+      if (!qty) return;
+      if (key.includes("|")) nextPlan[key] = qty;
+      else nextPlan[planKey(key, "direct")] = qty;
+    });
+    state.plan = nextPlan;
+  }
+
+  function updatePlan(id, mode, delta) {
+    const key = planKey(id, mode);
+    const next = Math.max(0, (state.plan[key] || 0) + delta);
+    if (next) state.plan[key] = next;
+    else delete state.plan[key];
+    persist();
+    render();
+  }
+
+  function getPlanQty(id, mode) {
+    return state.plan[planKey(id, mode)] || 0;
+  }
+
+  function planKey(id, mode) {
+    return `${id}|${mode}`;
+  }
+
+  function getTierInfo(item) {
+    if (item.category !== "Weapon") return null;
+    const match = item.name.match(/^(.+)\s+(I|II|III|IV)$/);
+    if (!match) return null;
+    return { series: match[1], roman: match[2], tier: tierByRoman[match[2]] };
+  }
+
+  function canCalculateScratchCost(item) {
+    const tier = getTierInfo(item);
+    if (!tier || tier.tier <= 1) return false;
+    for (let i = 1; i <= tier.tier; i += 1) {
+      if (!craftableByName.get(`${tier.series} ${romanByTier[i]}`.toLowerCase())) return false;
+    }
+    return true;
+  }
+
+  function cumulativeMaterials(item) {
+    const tier = getTierInfo(item);
+    if (!tier) return item.materials;
+    const materials = [];
+    for (let i = 1; i <= tier.tier; i += 1) {
+      const tierItem = craftableByName.get(`${tier.series} ${romanByTier[i]}`.toLowerCase());
+      if (tierItem) materials.push(...tierItem.materials);
+    }
+    return combineMaterials(materials);
+  }
+
+  function materialsForMode(item, mode) {
+    return mode === "scratch" && canCalculateScratchCost(item) ? cumulativeMaterials(item) : item.materials;
+  }
+
+  function combineMaterials(materials) {
+    const combined = new Map();
+    materials.forEach((material) => {
+      const current = combined.get(material.name) || { ...material, qty: 0 };
+      current.qty += material.qty;
+      combined.set(material.name, current);
+    });
+    return Array.from(combined.values()).sort((a, b) => {
+      if (rarityOrder[b.rarity] !== rarityOrder[a.rarity]) return rarityOrder[b.rarity] - rarityOrder[a.rarity];
+      return a.name.localeCompare(b.name);
+    });
+  }
+
+  function formatRecipe(materials) {
+    return materials.map((material) =>
+      `<span class="rarity-${material.rarity}">${escapeHtml(material.name)} x${material.qty}</span>`
+    ).join("");
+  }
+
+  function modeLabel(entry) {
+    if (entry.mode !== "scratch") {
+      const tier = getTierInfo(entry.item);
+      return tier && tier.tier > 1 ? "upgrade only" : "craft";
+    }
+    return "from scratch";
+  }
+
+  function searchAliases(item) {
+    const tier = getTierInfo(item);
+    if (!tier) return "";
+    return `${tier.series} ${tier.tier}`;
+  }
+
+  function normalizeSearch(value) {
+    return String(value || "")
+      .toLowerCase()
+      .replace(/\biv\b/g, "4")
+      .replace(/\biii\b/g, "3")
+      .replace(/\bii\b/g, "2")
+      .replace(/\bi\b/g, "1")
+      .replace(/\s+/g, " ")
+      .trim();
   }
 
   function persist() {

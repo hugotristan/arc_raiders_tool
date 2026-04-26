@@ -173,7 +173,7 @@ select {
   grid-template-columns: 92px minmax(0, 1fr);
   gap: 12px;
   padding: 12px;
-  min-height: 178px;
+  min-height: 196px;
 }
 
 .thumb {
@@ -235,7 +235,7 @@ select {
   display: flex;
   flex-wrap: wrap;
   gap: 6px;
-  margin: 8px 0 12px;
+  margin: 4px 0 10px;
 }
 
 .recipe span {
@@ -245,10 +245,41 @@ select {
   font-size: 0.76rem;
 }
 
+.recipe-title {
+  margin-top: 8px;
+  color: var(--teal);
+  font-size: 0.72rem;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.recipe-block {
+  margin-bottom: 10px;
+}
+
 .card-actions {
   display: flex;
   align-items: center;
   gap: 8px;
+}
+
+.card-actions.stacked {
+  align-items: flex-start;
+  flex-direction: column;
+}
+
+.plan-control {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.plan-control > span {
+  color: var(--muted);
+  font-size: 0.78rem;
+  font-weight: 800;
 }
 
 .stepper {
