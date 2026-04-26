@@ -484,7 +484,7 @@
 
   function formatRecipe(materials) {
     return materials.map((material) =>
-      `<span>${escapeHtml(material.name)} x${material.qty}</span>`
+      `<span class="rarity-${cssRarity(material.rarity)}">${escapeHtml(material.name)} x${material.qty}</span>`
     ).join("");
   }
 
