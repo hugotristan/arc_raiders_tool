@@ -105,7 +105,7 @@
     },
     "Bastion Cell": {
       slug: "bastion-cell",
-      rarity: "Rare",
+      rarity: "Epic",
       sourceUrl: "https://thearcraiders.wiki/items/bastion-cell",
       hints: ["Dropped by Bastion ARCs.", "Bring armor-piercing options and plan an extraction route.", "Used for Gear Bench level 3."]
     },
@@ -147,7 +147,7 @@
     },
     "Rocketeer Driver": {
       slug: "rocketeer-driver",
-      rarity: "Rare",
+      rarity: "Epic",
       sourceUrl: "https://thearcraiders.wiki/items/rocketeer-driver",
       hints: ["Dropped by Rocketeer ARCs.", "Use cover and fight from a planned extraction route.", "Used for Explosives Station level 3."]
     },
@@ -171,7 +171,7 @@
     },
     "Bombardier Cell": {
       slug: "bombardier-cell",
-      rarity: "Rare",
+      rarity: "Epic",
       sourceUrl: "https://thearcraiders.wiki/items/bombardier-cell",
       hints: ["Dropped by Bombardier ARCs.", "Bring enough firepower and avoid open-ground fights.", "Used for Refiner level 3."]
     },
@@ -195,7 +195,7 @@
     },
     "Leaper Pulse Unit": {
       slug: "leaper-pulse-unit",
-      rarity: "Rare",
+      rarity: "Epic",
       sourceUrl: "https://thearcraiders.wiki/items/leaper-pulse-unit",
       hints: ["Dropped by Leaper ARCs.", "Keep distance and loot after the area is clear.", "Used for Utility Station level 3."]
     }
@@ -277,8 +277,6 @@
       sourceUrl: "https://thearcraiders.wiki/hideout/weapon-bench",
       note: "Craft and upgrade weapons and weapon mods.",
       levels: [
-        { level: 1, materials: [{ name: "Metal Parts", rarity: "Common", qty: 20 }, { name: "Rubber Parts", rarity: "Common", qty: 30 }] },
-        { level: 2, materials: [{ name: "Rusted Tools", rarity: "Uncommon", qty: 3 }, { name: "Mechanical Components", rarity: "Uncommon", qty: 5 }, { name: "Wasp Driver", rarity: "Uncommon", qty: 8 }] },
         { level: 3, materials: [{ name: "Rusted Gear", rarity: "Rare", qty: 3 }, { name: "Advanced Mechanical Components", rarity: "Rare", qty: 5 }, { name: "Sentinel Firing Core", rarity: "Rare", qty: 4 }] }
       ]
     },
@@ -287,9 +285,7 @@
       sourceUrl: "https://thearcraiders.wiki/hideout/equipment-bench",
       note: "Unlocks shields, augments, and combat gear.",
       levels: [
-        { level: 1, materials: [{ name: "Plastic Parts", rarity: "Common", qty: 25 }, { name: "Fabric", rarity: "Common", qty: 30 }] },
-        { level: 2, materials: [{ name: "Power Cable", rarity: "Uncommon", qty: 3 }, { name: "Electrical Components", rarity: "Uncommon", qty: 5 }, { name: "Hornet Driver", rarity: "Uncommon", qty: 5 }] },
-        { level: 3, materials: [{ name: "Industrial Battery", rarity: "Rare", qty: 3 }, { name: "Advanced Electrical Components", rarity: "Rare", qty: 5 }, { name: "Bastion Cell", rarity: "Rare", qty: 6 }] }
+        { level: 3, materials: [{ name: "Industrial Battery", rarity: "Rare", qty: 3 }, { name: "Advanced Electrical Components", rarity: "Rare", qty: 5 }, { name: "Bastion Cell", rarity: "Epic", qty: 6 }] }
       ]
     },
     {
@@ -297,8 +293,6 @@
       sourceUrl: "https://thearcraiders.wiki/hideout/med-station",
       note: "Unlocks healing and revive supplies.",
       levels: [
-        { level: 1, materials: [{ name: "Fabric", rarity: "Common", qty: 50 }, { name: "ARC Alloy", rarity: "Uncommon", qty: 6 }] },
-        { level: 2, materials: [{ name: "Cracked Bioscanner", rarity: "Uncommon", qty: 2 }, { name: "Durable Cloth", rarity: "Uncommon", qty: 5 }, { name: "Tick Pod", rarity: "Uncommon", qty: 8 }] },
         { level: 3, materials: [{ name: "Rusted Shut Medical Kit", rarity: "Rare", qty: 3 }, { name: "Antiseptic", rarity: "Rare", qty: 8 }, { name: "Surveyor Vault", rarity: "Rare", qty: 5 }] }
       ]
     },
@@ -307,9 +301,7 @@
       sourceUrl: "https://thearcraiders.wiki/hideout/explosives-bench",
       note: "Unlocks grenades, mines, traps, and heavy explosives.",
       levels: [
-        { level: 1, materials: [{ name: "Rubber Parts", rarity: "Common", qty: 50 }, { name: "ARC Alloy", rarity: "Uncommon", qty: 6 }] },
-        { level: 2, materials: [{ name: "Synthesized Fuel", rarity: "Rare", qty: 3 }, { name: "Crude Explosives", rarity: "Uncommon", qty: 5 }, { name: "Pop Trigger", rarity: "Common", qty: 5 }] },
-        { level: 3, materials: [{ name: "Laboratory Reagents", rarity: "Rare", qty: 3 }, { name: "Explosive Compound", rarity: "Rare", qty: 5 }, { name: "Rocketeer Driver", rarity: "Rare", qty: 3 }] }
+        { level: 3, materials: [{ name: "Laboratory Reagents", rarity: "Rare", qty: 3 }, { name: "Explosive Compound", rarity: "Rare", qty: 5 }, { name: "Rocketeer Driver", rarity: "Epic", qty: 3 }] }
       ]
     },
     {
@@ -317,9 +309,7 @@
       sourceUrl: "https://thearcraiders.wiki/hideout/refiner",
       note: "Refines raw loot into advanced crafting materials.",
       levels: [
-        { level: 1, materials: [{ name: "Metal Parts", rarity: "Common", qty: 60 }, { name: "ARC Powercell", rarity: "Uncommon", qty: 5 }] },
-        { level: 2, materials: [{ name: "Toaster", rarity: "Uncommon", qty: 3 }, { name: "ARC Motion Core", rarity: "Uncommon", qty: 5 }, { name: "Fireball Burner", rarity: "Uncommon", qty: 8 }] },
-        { level: 3, materials: [{ name: "Motor", rarity: "Rare", qty: 3 }, { name: "ARC Circuitry", rarity: "Rare", qty: 10 }, { name: "Bombardier Cell", rarity: "Rare", qty: 6 }] }
+        { level: 3, materials: [{ name: "Motor", rarity: "Rare", qty: 3 }, { name: "ARC Circuitry", rarity: "Rare", qty: 10 }, { name: "Bombardier Cell", rarity: "Epic", qty: 6 }] }
       ]
     },
     {
@@ -327,16 +317,8 @@
       sourceUrl: "https://thearcraiders.wiki/hideout/utility-bench",
       note: "Unlocks tools, scanners, deployables, and traversal items.",
       levels: [
-        { level: 1, materials: [{ name: "Plastic Parts", rarity: "Common", qty: 50 }, { name: "ARC Alloy", rarity: "Uncommon", qty: 6 }] },
-        { level: 2, materials: [{ name: "Damaged Heat Sink", rarity: "Uncommon", qty: 2 }, { name: "Electrical Components", rarity: "Uncommon", qty: 5 }, { name: "Snitch Scanner", rarity: "Uncommon", qty: 6 }] },
-        { level: 3, materials: [{ name: "Fried Motherboard", rarity: "Rare", qty: 3 }, { name: "Advanced Electrical Components", rarity: "Rare", qty: 5 }, { name: "Leaper Pulse Unit", rarity: "Rare", qty: 4 }] }
+        { level: 3, materials: [{ name: "Fried Motherboard", rarity: "Rare", qty: 3 }, { name: "Advanced Electrical Components", rarity: "Rare", qty: 5 }, { name: "Leaper Pulse Unit", rarity: "Epic", qty: 4 }] }
       ]
-    },
-    {
-      name: "Workbench",
-      sourceUrl: "https://thearcraiders.wiki/hideout/workbench",
-      note: "Available from the start. No upgrades required.",
-      levels: []
     }
   ];
   const craftables = data.craftables.concat(extraCraftables).sort((a, b) => a.name.localeCompare(b.name));
