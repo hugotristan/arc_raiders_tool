@@ -218,7 +218,7 @@
           <div class="craft-body">
             <div class="craft-title">
               <h3>${escapeHtml(item.name)}</h3>
-              <span class="pill">${escapeHtml(item.rarity)}</span>
+              <span class="pill rarity-label rarity-${cssRarity(item.rarity)}">${escapeHtml(item.rarity)}</span>
             </div>
             <div class="meta">
               <span>${escapeHtml(item.type || "Weapon")}</span>
@@ -281,7 +281,7 @@
       <div class="selected-row">
         <div>
           <strong>${escapeHtml(entry.item.name)}</strong>
-          <span class="meta">${escapeHtml(entry.item.type)} - ${escapeHtml(entry.item.rarity)} - ${escapeHtml(modeLabel(entry))}</span>
+          <span class="meta">${escapeHtml(entry.item.type)} - <span class="rarity-label rarity-${cssRarity(entry.item.rarity)}">${escapeHtml(entry.item.rarity)}</span> - ${escapeHtml(modeLabel(entry))}</span>
         </div>
         <div class="stepper" data-id="${entry.item.id}" data-mode="${entry.mode}">
           <button type="button" data-action="down" title="Remove one">-</button>
@@ -321,7 +321,7 @@
           <div class="material-head">
             <div>
               <h3>${escapeHtml(material.name)}</h3>
-              <span class="pill">${escapeHtml(material.rarity)} - used by ${material.usedBy} craft${material.usedBy === 1 ? "" : "s"}</span>
+              <span class="pill rarity-label rarity-${cssRarity(material.rarity)}">${escapeHtml(material.rarity)} - used by ${material.usedBy} craft${material.usedBy === 1 ? "" : "s"}</span>
             </div>
             <div class="qty">${material.missing ? `${material.missing} needed` : "covered"}</div>
           </div>
@@ -484,7 +484,7 @@
 
   function formatRecipe(materials) {
     return materials.map((material) =>
-      `<span class="rarity-${material.rarity}">${escapeHtml(material.name)} x${material.qty}</span>`
+      `<span class="rarity-label rarity-${cssRarity(material.rarity)}">${escapeHtml(material.name)} x${material.qty}</span>`
     ).join("");
   }
 
@@ -531,6 +531,10 @@
 
   function option(value, label) {
     return `<option value="${escapeHtml(value)}">${escapeHtml(label)}</option>`;
+  }
+
+  function cssRarity(rarity) {
+    return String(rarity || "").replace(/[^a-z0-9_-]/gi, "");
   }
 
   function escapeHtml(value) {
