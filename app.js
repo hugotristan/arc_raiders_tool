@@ -2,14 +2,14 @@
   const data = window.ARC_DATA;
   const extraCraftables = [
     {
-      id: "manual-canto-smg",
-      name: "Canto SMG",
+      id: "manual-canto-i",
+      name: "Canto I",
       category: "Weapon",
       type: "SMG",
-      rarity: "Rare",
+      rarity: "Legendary",
       description: "Flashpoint weapon blueprint reported from Hurricane First Wave Caches.",
       image: "https://cdn.arctracker.io/items/canto.png",
-      sourceUrl: "https://arcraidershub.com/guides/canto-blueprint-guide",
+      sourceUrl: "https://arctracker.io/items/canto_i",
       bench: ["gunsmith", "weapon bench"],
       level: 3,
       blueprint: "Canto SMG Blueprint",
@@ -20,12 +20,63 @@
       ]
     },
     {
+      id: "manual-canto-ii",
+      name: "Canto II",
+      category: "Weapon",
+      type: "SMG",
+      rarity: "Legendary",
+      description: "Canto I upgraded to tier II.",
+      image: "https://cdn.arctracker.io/items/canto.png",
+      sourceUrl: "https://arctracker.io/items/canto_ii",
+      bench: ["gunsmith", "weapon bench"],
+      level: 3,
+      blueprint: "Canto SMG Blueprint",
+      materials: [
+        { name: "Advanced Mechanical Components", slug: "advanced-mechanical-components", rarity: "Rare", qty: 1 },
+        { name: "Medium Gun Parts", slug: "medium-gun-parts", rarity: "Rare", qty: 2 }
+      ]
+    },
+    {
+      id: "manual-canto-iii",
+      name: "Canto III",
+      category: "Weapon",
+      type: "SMG",
+      rarity: "Legendary",
+      description: "Canto II upgraded to tier III.",
+      image: "https://cdn.arctracker.io/items/canto.png",
+      sourceUrl: "https://arctracker.io/items/canto_iii",
+      bench: ["gunsmith", "weapon bench"],
+      level: 3,
+      blueprint: "Canto SMG Blueprint",
+      materials: [
+        { name: "Advanced Mechanical Components", slug: "advanced-mechanical-components", rarity: "Rare", qty: 1 },
+        { name: "Medium Gun Parts", slug: "medium-gun-parts", rarity: "Rare", qty: 2 }
+      ]
+    },
+    {
+      id: "manual-canto-iv",
+      name: "Canto IV",
+      category: "Weapon",
+      type: "SMG",
+      rarity: "Legendary",
+      description: "Canto III upgraded to tier IV.",
+      image: "https://cdn.arctracker.io/items/canto.png",
+      sourceUrl: "https://arctracker.io/items/canto_iv",
+      bench: ["gunsmith", "weapon bench"],
+      level: 3,
+      blueprint: "Canto SMG Blueprint",
+      materials: [
+        { name: "Advanced Mechanical Components", slug: "advanced-mechanical-components", rarity: "Rare", qty: 2 },
+        { name: "Medium Gun Parts", slug: "medium-gun-parts", rarity: "Rare", qty: 2 }
+      ]
+    },
+    {
       id: "manual-dolabra",
       name: "Dolabra",
       category: "Weapon",
       type: "Shotgun",
       rarity: "Legendary",
-      description: "Legendary Flashpoint energy shotgun. Blueprint drops from Arc Assessor containers during Close Scrutiny.",
+      description: "Legendary Flashpoint energy shotgun. Blueprint drops from Arc Assessor containers during Close Scrutiny. Dolabra has no II-IV upgrade tiers.",
       image: "https://cdn.arctracker.io/items/dolabra.png",
       sourceUrl: "https://arcraidershub.com/guides/dolabra-blueprint-guide",
       bench: ["gunsmith", "weapon bench"],
@@ -255,7 +306,7 @@
       { name: "Tempest", kind: "Blueprint", plannerSearch: "tempest i" },
       { name: "Bobcat", kind: "Blueprint", plannerSearch: "bobcat i" },
       { name: "Vulcano", kind: "Blueprint", plannerSearch: "vulcano i" },
-      { name: "Canto SMG", kind: "Blueprint", plannerSearch: "canto smg", infoUrl: "https://arcraidershub.com/guides/canto-blueprint-guide" },
+      { name: "Canto", kind: "Blueprint", plannerSearch: "canto i", infoUrl: "https://arcraidershub.com/guides/canto-blueprint-guide" },
       { name: "Dolabra", kind: "Close Scrutiny", plannerSearch: "dolabra", infoUrl: "https://arcraidershub.com/guides/dolabra-blueprint-guide" },
       { name: "Exodus Modules", kind: "Material", plannerSearch: "exodus modules" },
       { name: "Magnetic Accelerator", kind: "Material", plannerSearch: "magnetic accelerator" },
