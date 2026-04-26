@@ -442,9 +442,6 @@
             </button>
           `).join("")}
         </div>
-        <div class="source-links">
-          ${eventIntel.sources.map((source) => `<a href="${source.url}" target="_blank" rel="noreferrer">${escapeHtml(source.name)}</a>`).join("")}
-        </div>
       </article>
     `;
 
@@ -483,7 +480,7 @@
             <h3>${escapeHtml(bench.name)}</h3>
             <p>${escapeHtml(bench.note)}</p>
           </div>
-          <span class="pill">${bench.levels.length ? `Max ${bench.levels.length}` : "Base"}</span>
+          <span class="pill">Level 3</span>
         </div>
         ${bench.levels.length ? bench.levels.map((level) => `
           <div class="bench-level">
