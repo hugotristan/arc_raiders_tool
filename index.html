@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>ARC Raiders Craft Planner</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <header class="topbar">
+      <div>
+        <p class="eyebrow">ARC Raiders</p>
+        <h1>Craft Planner</h1>
+      </div>
+      <div class="top-actions">
+        <button id="clearPlan" class="ghost" type="button" title="Clear selected craftables">Clear</button>
+        <button id="copyPlan" type="button" title="Copy shopping list">Copy list</button>
+      </div>
+    </header>
+
+    <main class="layout">
+      <section class="catalog-panel">
+        <div class="controls">
+          <label class="search">
+            <span>Search</span>
+            <input id="searchInput" type="search" placeholder="Weapon, ammo, material...">
+          </label>
+          <label>
+            <span>Type</span>
+            <select id="typeFilter"></select>
+          </label>
+          <label>
+            <span>Rarity</span>
+            <select id="rarityFilter"></select>
+          </label>
+        </div>
+        <div id="catalog" class="catalog" aria-live="polite"></div>
+      </section>
+
+      <aside class="plan-panel">
+        <section class="summary-band">
+          <div>
+            <span id="selectedCount" class="metric">0</span>
+            <span>planned crafts</span>
+          </div>
+          <div>
+            <span id="missingCount" class="metric">0</span>
+            <span>items missing</span>
+          </div>
+          <div>
+            <span id="rareCount" class="metric">0</span>
+            <span>rare+</span>
+          </div>
+        </section>
+
+        <section>
+          <div class="section-heading">
+            <h2>Current Plan</h2>
+            <span id="generatedAt"></span>
+          </div>
+          <div id="selectedList" class="selected-list"></div>
+        </section>
+
+        <section>
+          <div class="section-heading">
+            <h2>Collect Next</h2>
+            <button id="resetOwned" class="link-button" type="button">Reset owned</button>
+          </div>
+          <div id="materialsList" class="materials-list"></div>
+        </section>
+
+        <section class="source-note">
+          <h2>Sources</h2>
+          <p>Recipe data is generated from community ARC Raiders wiki pages. Location hints are route guidance, not guaranteed spawn rules, because live loot tables can change.</p>
+          <div id="sourceLinks" class="source-links"></div>
+        </section>
+      </aside>
+    </main>
+
+    <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+    <script src="arc-data.generated.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
