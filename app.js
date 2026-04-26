@@ -8,7 +8,7 @@
       type: "SMG",
       rarity: "Rare",
       description: "Flashpoint weapon blueprint reported from Hurricane First Wave Caches.",
-      image: "",
+      image: "https://cdn.arctracker.io/items/canto.png",
       sourceUrl: "https://arcraidershub.com/guides/canto-blueprint-guide",
       bench: ["gunsmith", "weapon bench"],
       level: 3,
@@ -18,8 +18,48 @@
         { name: "Magnet", slug: "magnet", rarity: "Uncommon", qty: 5 },
         { name: "Medium Gun Parts", slug: "medium-gun-parts", rarity: "Rare", qty: 3 }
       ]
+    },
+    {
+      id: "manual-dolabra",
+      name: "Dolabra",
+      category: "Weapon",
+      type: "Shotgun",
+      rarity: "Legendary",
+      description: "Legendary Flashpoint energy shotgun. Blueprint drops from Arc Assessor containers during Close Scrutiny.",
+      image: "https://cdn.arctracker.io/items/dolabra.png",
+      sourceUrl: "https://arcraidershub.com/guides/dolabra-blueprint-guide",
+      bench: ["gunsmith", "weapon bench"],
+      level: 3,
+      blueprint: "Dolabra Blueprint",
+      materials: [
+        { name: "Shredder Gyro", slug: "shredder-gyro", rarity: "Epic", qty: 3 },
+        { name: "Magnetic Accelerator", slug: "magnetic-accelerator", rarity: "Epic", qty: 3 },
+        { name: "Vaporizer Regulator", slug: "vaporizer-regulator", rarity: "Epic", qty: 2 }
+      ]
     }
   ];
+  const extraMaterialSources = {
+    "Shredder Gyro": {
+      slug: "shredder-gyro",
+      rarity: "Epic",
+      sourceUrl: "https://arcraidershub.com/guides/dolabra-blueprint-guide",
+      hints: [
+        "Dropped by Shredders.",
+        "Reported on all maps, though Dam Battlegrounds can be less consistent.",
+        "Farm ARC-heavy routes and extract these before committing to PvP."
+      ]
+    },
+    "Vaporizer Regulator": {
+      slug: "vaporizer-regulator",
+      rarity: "Epic",
+      sourceUrl: "https://arcraidershub.com/guides/dolabra-blueprint-guide",
+      hints: [
+        "Dropped by Vaporizers.",
+        "Best farmed during Close Scrutiny, where Vaporizers spawn around Assessors.",
+        "You will often gather these while farming the Dolabra blueprint itself."
+      ]
+    }
+  };
   const eventIntel = {
     maps: [
       {
@@ -76,6 +116,7 @@
       { name: "Bobcat", kind: "Blueprint", plannerSearch: "bobcat i" },
       { name: "Vulcano", kind: "Blueprint", plannerSearch: "vulcano i" },
       { name: "Canto SMG", kind: "Blueprint", plannerSearch: "canto smg", infoUrl: "https://arcraidershub.com/guides/canto-blueprint-guide" },
+      { name: "Dolabra", kind: "Close Scrutiny", plannerSearch: "dolabra", infoUrl: "https://arcraidershub.com/guides/dolabra-blueprint-guide" },
       { name: "Exodus Modules", kind: "Material", plannerSearch: "exodus modules" },
       { name: "Magnetic Accelerator", kind: "Material", plannerSearch: "magnetic accelerator" },
       { name: "Vita Shot", kind: "Healing", plannerSearch: "vita shot" },
@@ -85,11 +126,13 @@
       { name: "Hurricane cache guide", url: "https://www.keengamer.com/articles/guides/arc-raiders-all-first-wave-raider-cache-locations/" },
       { name: "Interactive cache maps", url: "https://arcraidershub.com/guides/first-wave-caches-guide" },
       { name: "Canto blueprint guide", url: "https://arcraidershub.com/guides/canto-blueprint-guide" },
+      { name: "Dolabra blueprint guide", url: "https://arcraidershub.com/guides/dolabra-blueprint-guide" },
       { name: "Raider Cache wiki", url: "https://arcraiders.wiki/wiki/Raider_Cache" },
       { name: "Cache audio tips", url: "https://allthings.how/how-to-find-first-wave-caches-in-arc-raiders-hurricane-event/" }
     ]
   };
   const craftables = data.craftables.concat(extraCraftables).sort((a, b) => a.name.localeCompare(b.name));
+  const materialSources = { ...data.materialSources, ...extraMaterialSources };
   const rarityOrder = { Common: 1, Uncommon: 2, Rare: 3, Epic: 4, Legendary: 5 };
   const romanByTier = ["", "I", "II", "III", "IV"];
   const tierByRoman = { I: 1, II: 2, III: 3, IV: 4 };
@@ -150,6 +193,7 @@
           <span>Use headphones</span>
           <span>Safe pocket blueprints</span>
           <span>Rarer loot is in First Wave Caches</span>
+          <span>Dolabra is Close Scrutiny, not Hurricane</span>
           <span>Requeue if late</span>
         </div>
       </article>
@@ -188,7 +232,7 @@
       `).join("")}
       <article class="intel-card wide">
         <div class="intel-card-head">
-          <h3>Cache Loot Targets</h3>
+          <h3>Blueprint & Loot Targets</h3>
           <span class="pill">High value</span>
         </div>
         <div class="target-grid">
@@ -375,7 +419,7 @@
     }
 
     els.materialsList.innerHTML = materials.map((material) => {
-      const source = data.materialSources[material.name] || {};
+      const source = materialSources[material.name] || {};
       const hints = (source.hints || []).map((hint) => `<li>${escapeHtml(hint)}</li>`).join("");
       return `
         <article class="material-card rarity-${material.rarity}">
@@ -426,9 +470,8 @@
       const owned = state.owned[material.name] || 0;
       return { ...material, owned, missing: Math.max(0, material.total - owned) };
     }).sort((a, b) => {
-      if ((b.missing > 0) !== (a.missing > 0)) return b.missing > 0 ? 1 : -1;
       if (rarityOrder[b.rarity] !== rarityOrder[a.rarity]) return rarityOrder[b.rarity] - rarityOrder[a.rarity];
-      return b.missing - a.missing || a.name.localeCompare(b.name);
+      return a.name.localeCompare(b.name);
     });
   }
 
