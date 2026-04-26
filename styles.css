@@ -368,7 +368,8 @@ select {
 
 .recipe {
   display: flex;
-  flex-wrap: wrap;
+  align-items: flex-start;
+  flex-direction: column;
   gap: 6px;
   margin: 4px 0 10px;
 }
@@ -387,6 +388,7 @@ select {
   min-height: 0;
   font-weight: 400;
   cursor: pointer;
+  width: fit-content;
 }
 
 .recipe-item:hover {
