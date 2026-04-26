@@ -60,6 +60,144 @@
         "Best farmed during Close Scrutiny, where Vaporizers spawn around Assessors.",
         "You will often gather these while farming the Dolabra blueprint itself."
       ]
+    },
+    "Rusted Tools": {
+      slug: "rusted-tools",
+      rarity: "Uncommon",
+      sourceUrl: "https://thearcraiders.wiki/items/rusted-tools",
+      hints: ["Found in Mechanical loot areas.", "Check workshops, garages, industrial rooms, and tool containers.", "Used for Gunsmith upgrades."]
+    },
+    "Wasp Driver": {
+      slug: "wasp-driver",
+      rarity: "Uncommon",
+      sourceUrl: "https://thearcraiders.wiki/items/wasp-driver",
+      hints: ["Dropped by Wasp ARCs.", "Farm ARC-heavy routes where Wasps patrol.", "Used for Gunsmith level 2."]
+    },
+    "Rusted Gear": {
+      slug: "rusted-gear",
+      rarity: "Rare",
+      sourceUrl: "https://thearcraiders.wiki/items/rusted-gear",
+      hints: ["Found in Industrial loot areas.", "Check machinery, workshops, and heavy equipment zones.", "Used for Gunsmith level 3."]
+    },
+    "Sentinel Firing Core": {
+      slug: "sentinel-firing-core",
+      rarity: "Rare",
+      sourceUrl: "https://thearcraiders.wiki/items/sentinel-firing-core",
+      hints: ["Dropped by Sentinel ARCs.", "Prioritize dangerous ARC routes and extract quickly.", "Used for Gunsmith level 3."]
+    },
+    "Power Cable": {
+      slug: "power-cable",
+      rarity: "Uncommon",
+      sourceUrl: "https://thearcraiders.wiki/items/power-cable",
+      hints: ["Found in Electrical, Residential, and Commercial loot areas.", "Check utility rooms, offices, apartments, and power equipment.", "Used for Gear Bench level 2."]
+    },
+    "Hornet Driver": {
+      slug: "hornet-driver",
+      rarity: "Uncommon",
+      sourceUrl: "https://thearcraiders.wiki/items/hornet-driver",
+      hints: ["Dropped by Hornet ARCs.", "Farm ARC patrol routes with aerial enemies.", "Used for Gear Bench level 2."]
+    },
+    "Industrial Battery": {
+      slug: "industrial-battery",
+      rarity: "Rare",
+      sourceUrl: "https://thearcraiders.wiki/items/industrial-battery",
+      hints: ["Found in Industrial loot areas.", "Check machinery, depots, garages, and power-adjacent sites.", "Used for Gear Bench level 3."]
+    },
+    "Bastion Cell": {
+      slug: "bastion-cell",
+      rarity: "Rare",
+      sourceUrl: "https://thearcraiders.wiki/items/bastion-cell",
+      hints: ["Dropped by Bastion ARCs.", "Bring armor-piercing options and plan an extraction route.", "Used for Gear Bench level 3."]
+    },
+    "Cracked Bioscanner": {
+      slug: "cracked-bioscanner",
+      rarity: "Uncommon",
+      sourceUrl: "https://thearcraiders.wiki/items/cracked-bioscanner",
+      hints: ["Found in Medical loot areas.", "Check hospitals, clinics, labs, and medical containers.", "Used for Medical Lab level 2."]
+    },
+    "Tick Pod": {
+      slug: "tick-pod",
+      rarity: "Uncommon",
+      sourceUrl: "https://thearcraiders.wiki/items/tick-pod",
+      hints: ["Dropped by Tick ARCs.", "Farm small ARC encounters and salvage safely.", "Used for Medical Lab level 2."]
+    },
+    "Rusted Shut Medical Kit": {
+      slug: "rusted-shut-medical-kit",
+      rarity: "Rare",
+      sourceUrl: "https://thearcraiders.wiki/items/rusted-shut-medical-kit",
+      hints: ["Found in Medical loot areas.", "Prioritize hospitals, clinics, and medical research rooms.", "Used for Medical Lab level 3."]
+    },
+    "Surveyor Vault": {
+      slug: "surveyor-vault",
+      rarity: "Rare",
+      sourceUrl: "https://thearcraiders.wiki/items/surveyor-vault",
+      hints: ["Dropped by Surveyor ARCs.", "Farm ARC-heavy routes and loot the wreck safely.", "Used for Medical Lab level 3."]
+    },
+    "Synthesized Fuel": {
+      slug: "synthesized-fuel",
+      rarity: "Rare",
+      sourceUrl: "https://thearcraiders.wiki/items/synthesized-fuel",
+      hints: ["Found in Industrial and fuel-related loot areas.", "Check garages, depots, vehicle yards, and utility rooms.", "Used for Explosives Station level 2."]
+    },
+    "Laboratory Reagents": {
+      slug: "laboratory-reagents",
+      rarity: "Rare",
+      sourceUrl: "https://thearcraiders.wiki/items/laboratory-reagents",
+      hints: ["Found in Medical and laboratory loot areas.", "Hospital and research interiors are strong routes.", "Used for Explosives Station level 3."]
+    },
+    "Rocketeer Driver": {
+      slug: "rocketeer-driver",
+      rarity: "Rare",
+      sourceUrl: "https://thearcraiders.wiki/items/rocketeer-driver",
+      hints: ["Dropped by Rocketeer ARCs.", "Use cover and fight from a planned extraction route.", "Used for Explosives Station level 3."]
+    },
+    "Toaster": {
+      slug: "toaster",
+      rarity: "Uncommon",
+      sourceUrl: "https://thearcraiders.wiki/items/toaster",
+      hints: ["Found in Residential and Commercial loot areas.", "Check kitchens, apartments, shops, and household containers.", "Used for Refiner level 2."]
+    },
+    "Fireball Burner": {
+      slug: "fireball-burner",
+      rarity: "Uncommon",
+      sourceUrl: "https://thearcraiders.wiki/items/fireball-burner",
+      hints: ["Dropped by Fireball ARCs.", "Farm ARC-heavy routes with fire units.", "Used for Refiner level 2."]
+    },
+    "Motor": {
+      slug: "motor",
+      rarity: "Rare",
+      sourceUrl: "https://thearcraiders.wiki/items/motor",
+      hints: ["Found in Mechanical and Industrial loot areas.", "Check machinery, garages, and workshop containers.", "Used for Refiner level 3."]
+    },
+    "Bombardier Cell": {
+      slug: "bombardier-cell",
+      rarity: "Rare",
+      sourceUrl: "https://thearcraiders.wiki/items/bombardier-cell",
+      hints: ["Dropped by Bombardier ARCs.", "Bring enough firepower and avoid open-ground fights.", "Used for Refiner level 3."]
+    },
+    "Damaged Heat Sink": {
+      slug: "damaged-heat-sink",
+      rarity: "Uncommon",
+      sourceUrl: "https://thearcraiders.wiki/items/damaged-heat-sink",
+      hints: ["Found in Electrical and Technological loot areas.", "Check server rooms, control rooms, and utility spaces.", "Used for Utility Station level 2."]
+    },
+    "Snitch Scanner": {
+      slug: "snitch-scanner",
+      rarity: "Uncommon",
+      sourceUrl: "https://thearcraiders.wiki/items/snitch-scanner",
+      hints: ["Dropped by Snitch ARCs.", "Farm scanner/drone ARC routes and loot quickly.", "Used for Utility Station level 2."]
+    },
+    "Fried Motherboard": {
+      slug: "fried-motherboard",
+      rarity: "Rare",
+      sourceUrl: "https://thearcraiders.wiki/items/fried-motherboard",
+      hints: ["Found in Electrical and Technological loot areas.", "Check offices, control rooms, server racks, and electronics containers.", "Used for Utility Station level 3."]
+    },
+    "Leaper Pulse Unit": {
+      slug: "leaper-pulse-unit",
+      rarity: "Rare",
+      sourceUrl: "https://thearcraiders.wiki/items/leaper-pulse-unit",
+      hints: ["Dropped by Leaper ARCs.", "Keep distance and loot after the area is clear.", "Used for Utility Station level 3."]
     }
   };
   const eventIntel = {
@@ -133,6 +271,74 @@
       { name: "Cache audio tips", url: "https://allthings.how/how-to-find-first-wave-caches-in-arc-raiders-hurricane-event/" }
     ]
   };
+  const benchUpgrades = [
+    {
+      name: "Gunsmith",
+      sourceUrl: "https://thearcraiders.wiki/hideout/weapon-bench",
+      note: "Craft and upgrade weapons and weapon mods.",
+      levels: [
+        { level: 1, materials: [{ name: "Metal Parts", rarity: "Common", qty: 20 }, { name: "Rubber Parts", rarity: "Common", qty: 30 }] },
+        { level: 2, materials: [{ name: "Rusted Tools", rarity: "Uncommon", qty: 3 }, { name: "Mechanical Components", rarity: "Uncommon", qty: 5 }, { name: "Wasp Driver", rarity: "Uncommon", qty: 8 }] },
+        { level: 3, materials: [{ name: "Rusted Gear", rarity: "Rare", qty: 3 }, { name: "Advanced Mechanical Components", rarity: "Rare", qty: 5 }, { name: "Sentinel Firing Core", rarity: "Rare", qty: 4 }] }
+      ]
+    },
+    {
+      name: "Gear Bench",
+      sourceUrl: "https://thearcraiders.wiki/hideout/equipment-bench",
+      note: "Unlocks shields, augments, and combat gear.",
+      levels: [
+        { level: 1, materials: [{ name: "Plastic Parts", rarity: "Common", qty: 25 }, { name: "Fabric", rarity: "Common", qty: 30 }] },
+        { level: 2, materials: [{ name: "Power Cable", rarity: "Uncommon", qty: 3 }, { name: "Electrical Components", rarity: "Uncommon", qty: 5 }, { name: "Hornet Driver", rarity: "Uncommon", qty: 5 }] },
+        { level: 3, materials: [{ name: "Industrial Battery", rarity: "Rare", qty: 3 }, { name: "Advanced Electrical Components", rarity: "Rare", qty: 5 }, { name: "Bastion Cell", rarity: "Rare", qty: 6 }] }
+      ]
+    },
+    {
+      name: "Medical Lab",
+      sourceUrl: "https://thearcraiders.wiki/hideout/med-station",
+      note: "Unlocks healing and revive supplies.",
+      levels: [
+        { level: 1, materials: [{ name: "Fabric", rarity: "Common", qty: 50 }, { name: "ARC Alloy", rarity: "Uncommon", qty: 6 }] },
+        { level: 2, materials: [{ name: "Cracked Bioscanner", rarity: "Uncommon", qty: 2 }, { name: "Durable Cloth", rarity: "Uncommon", qty: 5 }, { name: "Tick Pod", rarity: "Uncommon", qty: 8 }] },
+        { level: 3, materials: [{ name: "Rusted Shut Medical Kit", rarity: "Rare", qty: 3 }, { name: "Antiseptic", rarity: "Rare", qty: 8 }, { name: "Surveyor Vault", rarity: "Rare", qty: 5 }] }
+      ]
+    },
+    {
+      name: "Explosives Station",
+      sourceUrl: "https://thearcraiders.wiki/hideout/explosives-bench",
+      note: "Unlocks grenades, mines, traps, and heavy explosives.",
+      levels: [
+        { level: 1, materials: [{ name: "Rubber Parts", rarity: "Common", qty: 50 }, { name: "ARC Alloy", rarity: "Uncommon", qty: 6 }] },
+        { level: 2, materials: [{ name: "Synthesized Fuel", rarity: "Rare", qty: 3 }, { name: "Crude Explosives", rarity: "Uncommon", qty: 5 }, { name: "Pop Trigger", rarity: "Common", qty: 5 }] },
+        { level: 3, materials: [{ name: "Laboratory Reagents", rarity: "Rare", qty: 3 }, { name: "Explosive Compound", rarity: "Rare", qty: 5 }, { name: "Rocketeer Driver", rarity: "Rare", qty: 3 }] }
+      ]
+    },
+    {
+      name: "Refiner",
+      sourceUrl: "https://thearcraiders.wiki/hideout/refiner",
+      note: "Refines raw loot into advanced crafting materials.",
+      levels: [
+        { level: 1, materials: [{ name: "Metal Parts", rarity: "Common", qty: 60 }, { name: "ARC Powercell", rarity: "Uncommon", qty: 5 }] },
+        { level: 2, materials: [{ name: "Toaster", rarity: "Uncommon", qty: 3 }, { name: "ARC Motion Core", rarity: "Uncommon", qty: 5 }, { name: "Fireball Burner", rarity: "Uncommon", qty: 8 }] },
+        { level: 3, materials: [{ name: "Motor", rarity: "Rare", qty: 3 }, { name: "ARC Circuitry", rarity: "Rare", qty: 10 }, { name: "Bombardier Cell", rarity: "Rare", qty: 6 }] }
+      ]
+    },
+    {
+      name: "Utility Station",
+      sourceUrl: "https://thearcraiders.wiki/hideout/utility-bench",
+      note: "Unlocks tools, scanners, deployables, and traversal items.",
+      levels: [
+        { level: 1, materials: [{ name: "Plastic Parts", rarity: "Common", qty: 50 }, { name: "ARC Alloy", rarity: "Uncommon", qty: 6 }] },
+        { level: 2, materials: [{ name: "Damaged Heat Sink", rarity: "Uncommon", qty: 2 }, { name: "Electrical Components", rarity: "Uncommon", qty: 5 }, { name: "Snitch Scanner", rarity: "Uncommon", qty: 6 }] },
+        { level: 3, materials: [{ name: "Fried Motherboard", rarity: "Rare", qty: 3 }, { name: "Advanced Electrical Components", rarity: "Rare", qty: 5 }, { name: "Leaper Pulse Unit", rarity: "Rare", qty: 4 }] }
+      ]
+    },
+    {
+      name: "Workbench",
+      sourceUrl: "https://thearcraiders.wiki/hideout/workbench",
+      note: "Available from the start. No upgrades required.",
+      levels: []
+    }
+  ];
   const craftables = data.craftables.concat(extraCraftables).sort((a, b) => a.name.localeCompare(b.name));
   const materialSources = { ...data.materialSources, ...extraMaterialSources };
   const rarityOrder = { Common: 1, Uncommon: 2, Rare: 3, Epic: 4, Legendary: 5 };
@@ -143,6 +349,7 @@
 
   const els = {
     catalog: document.querySelector("#catalog"),
+    benchUpgrades: document.querySelector("#benchUpgrades"),
     mapIntel: document.querySelector("#mapIntel"),
     materialInfo: document.querySelector("#materialInfo"),
     selectedList: document.querySelector("#selectedList"),
@@ -165,6 +372,7 @@
   initFilters();
   renderSources();
   renderMapIntel();
+  renderBenchUpgrades();
   render();
 
   els.search.addEventListener("input", renderCatalog);
@@ -278,6 +486,31 @@
     });
   }
 
+  function renderBenchUpgrades() {
+    els.benchUpgrades.innerHTML = benchUpgrades.map((bench) => `
+      <article class="bench-card">
+        <div class="bench-card-head">
+          <div>
+            <h3>${escapeHtml(bench.name)}</h3>
+            <p>${escapeHtml(bench.note)}</p>
+          </div>
+          <span class="pill">${bench.levels.length ? `Max ${bench.levels.length}` : "Base"}</span>
+        </div>
+        ${bench.levels.length ? bench.levels.map((level) => `
+          <div class="bench-level">
+            <div class="recipe-title">Level ${level.level}</div>
+            <div class="recipe">${formatRecipe(level.materials)}</div>
+          </div>
+        `).join("") : `<div class="empty compact-empty">No upgrade materials needed.</div>`}
+        <div class="craft-source-row">
+          <a href="${bench.sourceUrl}" target="_blank" rel="noreferrer">Detailed source page</a>
+        </div>
+      </article>
+    `).join("");
+
+    attachRecipeInfo(els.benchUpgrades);
+  }
+
   function initFilters() {
     const types = unique(craftables.map((item) => item.type)).sort();
     const rarities = ["Common", "Uncommon", "Rare", "Epic", "Legendary"];
@@ -376,9 +609,7 @@
       });
     });
 
-    els.catalog.querySelectorAll(".recipe-item").forEach((button) => {
-      button.addEventListener("click", () => showMaterialInfo(button.dataset.material));
-    });
+    attachRecipeInfo(els.catalog);
   }
 
   function renderSelected() {
@@ -522,6 +753,12 @@
     els.toast.textContent = message;
     els.toast.classList.add("show");
     window.setTimeout(() => els.toast.classList.remove("show"), 1800);
+  }
+
+  function attachRecipeInfo(root) {
+    root.querySelectorAll(".recipe-item").forEach((button) => {
+      button.addEventListener("click", () => showMaterialInfo(button.dataset.material));
+    });
   }
 
   function showMaterialInfo(name) {

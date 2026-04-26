@@ -149,7 +149,14 @@ h2 {
   gap: 12px;
 }
 
-.intel-card {
+.bench-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 12px;
+}
+
+.intel-card,
+.bench-card {
   border: 1px solid var(--line);
   border-radius: 8px;
   background: rgba(20, 21, 17, 0.9);
@@ -171,6 +178,39 @@ h2 {
 .intel-card h3 {
   margin: 0;
   font-size: 1rem;
+}
+
+.bench-card {
+  display: flex;
+  flex-direction: column;
+}
+
+.bench-card-head {
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+
+.bench-card-head h3 {
+  margin: 0 0 4px;
+  font-size: 1rem;
+}
+
+.bench-card-head p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.84rem;
+}
+
+.bench-level + .bench-level {
+  margin-top: 8px;
+}
+
+.compact-empty {
+  padding: 12px;
+  font-size: 0.86rem;
 }
 
 .intel-card p {
