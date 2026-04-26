@@ -4,6 +4,12 @@ A local crafting planner for ARC Raiders. Pick the weapons, mods, ammo, shields,
 
 ## Run It
 
+Use the hosted version:
+
+https://hugotristan.github.io/arc_raiders_tool/
+
+Or open it locally:
+
 Open `index.html` in your browser.
 
 No install step is required. The app is a static HTML/CSS/JavaScript tool and stores your selected plan locally in your browser.
