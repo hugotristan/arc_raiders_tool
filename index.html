@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>ARC Raiders Craft Planner</title>
-    <link rel="stylesheet" href="styles.css?v=20260426-clean-intel">
+    <link rel="stylesheet" href="styles.css?v=20260426-mobile-nav2">
   </head>
   <body>
     <header class="topbar">
@@ -17,30 +17,16 @@
         <button id="copyPlan" type="button" title="Copy shopping list">Copy list</button>
       </div>
     </header>
+    <nav class="quick-nav" aria-label="Quick navigation">
+      <a href="#planner">Plan</a>
+      <a href="#collect">Collect</a>
+      <a href="#catalog">Catalog</a>
+      <a href="#intel">Intel</a>
+    </nav>
 
     <main class="layout">
       <section class="catalog-panel">
-        <section class="intel-panel">
-          <div class="section-heading">
-            <div>
-              <p class="eyebrow">Event & Map Intel</p>
-              <h2>Hurricane First Wave Caches</h2>
-            </div>
-          </div>
-          <div id="mapIntel" class="intel-grid"></div>
-        </section>
-
-        <section class="intel-panel">
-          <div class="section-heading">
-            <div>
-              <p class="eyebrow">Hideout</p>
-              <h2>Bench Upgrades</h2>
-            </div>
-          </div>
-          <div id="benchUpgrades" class="bench-grid"></div>
-        </section>
-
-        <div class="controls">
+        <div id="catalog-tools" class="controls">
           <label class="search">
             <span>Search</span>
             <input id="searchInput" type="search" placeholder="Weapon, ammo, material...">
@@ -55,9 +41,31 @@
           </label>
         </div>
         <div id="catalog" class="catalog" aria-live="polite"></div>
+
+        <details id="intel" class="info-drawer">
+          <summary>
+            <span>
+              <span class="eyebrow">Event & Map Intel</span>
+              <strong>Hurricane First Wave Caches</strong>
+            </span>
+            <span class="summary-hint">Open maps</span>
+          </summary>
+          <div id="mapIntel" class="intel-grid"></div>
+        </details>
+
+        <details id="benches" class="info-drawer">
+          <summary>
+            <span>
+              <span class="eyebrow">Hideout</span>
+              <strong>Bench Upgrades</strong>
+            </span>
+            <span class="summary-hint">Open upgrades</span>
+          </summary>
+          <div id="benchUpgrades" class="bench-grid"></div>
+        </details>
       </section>
 
-      <aside class="plan-panel">
+      <aside id="planner" class="plan-panel">
         <section class="summary-band">
           <div>
             <span id="selectedCount" class="metric">0</span>
@@ -81,7 +89,7 @@
           <div id="selectedList" class="selected-list"></div>
         </section>
 
-        <section>
+        <section id="collect">
           <div class="section-heading">
             <h2>Collect Next</h2>
             <button id="resetOwned" class="link-button" type="button">Reset owned</button>
