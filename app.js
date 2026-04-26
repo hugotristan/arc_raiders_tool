@@ -43,6 +43,7 @@
       slug: "shredder-gyro",
       rarity: "Epic",
       sourceUrl: "https://arcraidershub.com/guides/dolabra-blueprint-guide",
+      image: "https://arcraiders.wiki/images/thumb/Shredder_Gyro.png/96px-Shredder_Gyro.png",
       hints: [
         "Dropped by Shredders.",
         "Reported on all maps, though Dam Battlegrounds can be less consistent.",
@@ -53,6 +54,7 @@
       slug: "vaporizer-regulator",
       rarity: "Epic",
       sourceUrl: "https://arcraidershub.com/guides/dolabra-blueprint-guide",
+      image: "https://arcraiders.wiki/images/thumb/Vaporizer_Regulator.png/96px-Vaporizer_Regulator.png",
       hints: [
         "Dropped by Vaporizers.",
         "Best farmed during Close Scrutiny, where Vaporizers spawn around Assessors.",
@@ -523,13 +525,15 @@
   function showMaterialInfo(name) {
     const source = materialSources[name] || {};
     const rarity = source.rarity || materialRarity(name) || "Unknown";
+    const image = materialImage(name, source);
     const hints = source.hints && source.hints.length
       ? source.hints
       : ["No local source notes yet. Use the source link for current drop, trader, and recycling details."];
 
     els.materialInfo.innerHTML = `
       <article class="material-info-card rarity-${cssRarity(rarity)}">
-        <div class="material-head">
+        <div class="material-info-head">
+          <div class="material-info-thumb">${image ? `<img src="${image}" alt="${escapeHtml(name)}">` : ""}</div>
           <div>
             <h3>${escapeHtml(name)}</h3>
             <span class="pill rarity-label rarity-${cssRarity(rarity)}">${escapeHtml(rarity)}</span>
@@ -540,21 +544,17 @@
         </ul>
         <div class="source-links">
           ${source.sourceUrl ? `<a href="${source.sourceUrl}" target="_blank" rel="noreferrer">Detailed source page</a>` : ""}
-          <button class="link-button" type="button" data-fill-search="${escapeHtml(name)}">Search planner</button>
         </div>
       </article>
     `;
 
-    const searchButton = els.materialInfo.querySelector("[data-fill-search]");
-    if (searchButton) {
-      searchButton.addEventListener("click", () => {
-        els.search.value = searchButton.dataset.fillSearch;
-        renderCatalog();
-        document.querySelector(".controls").scrollIntoView({ behavior: "smooth", block: "start" });
-      });
-    }
-
     els.materialInfo.scrollIntoView({ behavior: "smooth", block: "nearest" });
+  }
+
+  function materialImage(name, source) {
+    if (source.image) return source.image;
+    if (source.slug) return `https://cdn.thearcraiders.wiki/images/items/${source.slug.replace(/-/g, "_")}.png`;
+    return "";
   }
 
   function materialRarity(name) {

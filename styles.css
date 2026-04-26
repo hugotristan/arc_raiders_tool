@@ -529,6 +529,34 @@ select {
   border-left-width: 4px;
 }
 
+.material-info-head {
+  display: grid;
+  grid-template-columns: 74px minmax(0, 1fr);
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.material-info-head h3 {
+  margin-bottom: 6px;
+}
+
+.material-info-thumb {
+  width: 74px;
+  aspect-ratio: 1 / 1;
+  display: grid;
+  place-items: center;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: #0c0d0b;
+}
+
+.material-info-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
 .material-head {
   display: grid;
   grid-template-columns: minmax(0, 1fr) auto;
