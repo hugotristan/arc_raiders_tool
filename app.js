@@ -1,5 +1,25 @@
 (function () {
   const data = window.ARC_DATA;
+  const extraCraftables = [
+    {
+      id: "manual-canto-smg",
+      name: "Canto SMG",
+      category: "Weapon",
+      type: "SMG",
+      rarity: "Rare",
+      description: "Flashpoint weapon blueprint reported from Hurricane First Wave Caches.",
+      image: "",
+      sourceUrl: "https://arcraidershub.com/guides/canto-blueprint-guide",
+      bench: ["gunsmith", "weapon bench"],
+      level: 3,
+      blueprint: "Canto SMG Blueprint",
+      materials: [
+        { name: "Advanced Mechanical Components", slug: "advanced-mechanical-components", rarity: "Rare", qty: 2 },
+        { name: "Magnet", slug: "magnet", rarity: "Uncommon", qty: 5 },
+        { name: "Medium Gun Parts", slug: "medium-gun-parts", rarity: "Rare", qty: 3 }
+      ]
+    }
+  ];
   const eventIntel = {
     maps: [
       {
@@ -55,7 +75,7 @@
       { name: "Tempest", kind: "Blueprint", plannerSearch: "tempest i" },
       { name: "Bobcat", kind: "Blueprint", plannerSearch: "bobcat i" },
       { name: "Vulcano", kind: "Blueprint", plannerSearch: "vulcano i" },
-      { name: "Canto SMG", kind: "Blueprint", plannerSearch: "" },
+      { name: "Canto SMG", kind: "Blueprint", plannerSearch: "canto smg", infoUrl: "https://arcraidershub.com/guides/canto-blueprint-guide" },
       { name: "Exodus Modules", kind: "Material", plannerSearch: "exodus modules" },
       { name: "Magnetic Accelerator", kind: "Material", plannerSearch: "magnetic accelerator" },
       { name: "Vita Shot", kind: "Healing", plannerSearch: "vita shot" },
@@ -64,11 +84,12 @@
     sources: [
       { name: "Hurricane cache guide", url: "https://www.keengamer.com/articles/guides/arc-raiders-all-first-wave-raider-cache-locations/" },
       { name: "Interactive cache maps", url: "https://arcraidershub.com/guides/first-wave-caches-guide" },
+      { name: "Canto blueprint guide", url: "https://arcraidershub.com/guides/canto-blueprint-guide" },
       { name: "Raider Cache wiki", url: "https://arcraiders.wiki/wiki/Raider_Cache" },
       { name: "Cache audio tips", url: "https://allthings.how/how-to-find-first-wave-caches-in-arc-raiders-hurricane-event/" }
     ]
   };
-  const craftables = data.craftables.slice().sort((a, b) => a.name.localeCompare(b.name));
+  const craftables = data.craftables.concat(extraCraftables).sort((a, b) => a.name.localeCompare(b.name));
   const rarityOrder = { Common: 1, Uncommon: 2, Rare: 3, Epic: 4, Legendary: 5 };
   const romanByTier = ["", "I", "II", "III", "IV"];
   const tierByRoman = { I: 1, II: 2, III: 3, IV: 4 };
@@ -123,11 +144,12 @@
           <h3>How To Use Cache Maps</h3>
           <span class="pill">Hurricane only</span>
         </div>
-        <p>First Wave Caches use Raider Cache marker pools during Hurricane conditions. Markers are possible spawns, not guaranteed spawns. Check clusters, stop within 30-50m, and listen for the electric hum.</p>
+        <p>First Wave Caches use Raider Cache marker pools during Hurricane conditions. They are the rare-loot version of regular Raider Caches, with blueprints, premium weapons, high-tier materials, healing items, shields, mods, ammo, and quick-use gear. Markers are possible spawns, not guaranteed spawns. Check clusters, stop within 30-50m, and listen for the electric hum.</p>
         <div class="intel-tips">
           <span>No Stella Montis</span>
           <span>Use headphones</span>
           <span>Safe pocket blueprints</span>
+          <span>Rarer loot is in First Wave Caches</span>
           <span>Requeue if late</span>
         </div>
       </article>
@@ -171,7 +193,7 @@
         </div>
         <div class="target-grid">
           ${eventIntel.targets.map((target) => `
-            <button class="target-chip" type="button" data-search="${escapeHtml(target.plannerSearch)}" ${target.plannerSearch ? "" : "disabled"}>
+            <button class="target-chip" type="button" data-search="${escapeHtml(target.plannerSearch)}" data-info-url="${escapeHtml(target.infoUrl || "")}">
               <strong>${escapeHtml(target.name)}</strong>
               <span>${escapeHtml(target.kind)}</span>
             </button>
@@ -183,11 +205,17 @@
       </article>
     `;
 
-    els.mapIntel.querySelectorAll(".target-chip:not(:disabled)").forEach((button) => {
+    els.mapIntel.querySelectorAll(".target-chip").forEach((button) => {
       button.addEventListener("click", () => {
-        els.search.value = button.dataset.search;
-        renderCatalog();
-        document.querySelector(".controls").scrollIntoView({ behavior: "smooth", block: "start" });
+        if (button.dataset.search) {
+          els.search.value = button.dataset.search;
+          renderCatalog();
+          document.querySelector(".controls").scrollIntoView({ behavior: "smooth", block: "start" });
+          return;
+        }
+        if (button.dataset.infoUrl) {
+          window.open(button.dataset.infoUrl, "_blank", "noopener");
+        }
       });
     });
 
