@@ -116,6 +116,7 @@
   els.copyPlan.addEventListener("click", copyList);
 
   function renderMapIntel() {
+    const defaultMap = eventIntel.maps[0];
     els.mapIntel.innerHTML = `
       <article class="intel-card wide">
         <div class="intel-card-head">
@@ -129,6 +130,27 @@
           <span>Safe pocket blueprints</span>
           <span>Requeue if late</span>
         </div>
+      </article>
+      <article class="intel-card wide embedded-map-card">
+        <div class="intel-card-head">
+          <h3>Embedded Cache Map</h3>
+          <a id="activeMapLink" href="${defaultMap.url}" target="_blank" rel="noreferrer">Open full map</a>
+        </div>
+        <div class="map-tabs">
+          ${eventIntel.maps.map((map, index) => `
+            <button class="map-tab ${index === 0 ? "active" : ""}" type="button" data-map-url="${map.url}" data-map-name="${escapeHtml(map.name)}">
+              ${escapeHtml(map.name)}
+            </button>
+          `).join("")}
+        </div>
+        <iframe
+          id="cacheMapFrame"
+          class="cache-map-frame"
+          title="ARC Raiders Hurricane cache map"
+          src="${defaultMap.url}"
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+        ></iframe>
       </article>
       ${eventIntel.maps.map((map) => `
         <article class="intel-card">
@@ -166,6 +188,17 @@
         els.search.value = button.dataset.search;
         renderCatalog();
         document.querySelector(".controls").scrollIntoView({ behavior: "smooth", block: "start" });
+      });
+    });
+
+    const frame = els.mapIntel.querySelector("#cacheMapFrame");
+    const activeLink = els.mapIntel.querySelector("#activeMapLink");
+    els.mapIntel.querySelectorAll(".map-tab").forEach((button) => {
+      button.addEventListener("click", () => {
+        els.mapIntel.querySelectorAll(".map-tab").forEach((tab) => tab.classList.remove("active"));
+        button.classList.add("active");
+        frame.src = button.dataset.mapUrl;
+        activeLink.href = button.dataset.mapUrl;
       });
     });
   }

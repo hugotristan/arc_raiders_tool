@@ -180,7 +180,8 @@ h2 {
 }
 
 .intel-tips,
-.target-grid {
+.target-grid,
+.map-tabs {
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
@@ -225,6 +226,37 @@ h2 {
 .target-chip:disabled {
   cursor: not-allowed;
   opacity: 0.62;
+}
+
+.embedded-map-card {
+  padding: 12px;
+}
+
+.map-tabs {
+  margin-bottom: 10px;
+}
+
+.map-tab {
+  min-height: 34px;
+  border-color: var(--line);
+  background: var(--panel-2);
+  color: var(--ink);
+}
+
+.map-tab.active {
+  border-color: var(--amber);
+  background: var(--amber);
+  color: #18140d;
+}
+
+.cache-map-frame {
+  width: 100%;
+  height: min(68vh, 680px);
+  min-height: 420px;
+  display: block;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #0c0d0b;
 }
 
 .controls {
