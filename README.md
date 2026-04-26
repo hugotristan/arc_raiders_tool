@@ -15,6 +15,7 @@ No install step is required. The app is a static HTML/CSS/JavaScript tool and st
 - Aggregate all required materials across the plan.
 - Track owned materials.
 - Show a prioritized collection list.
+- Open Hurricane First Wave Cache map links and route notes.
 - Link back to community source pages for current recipe and item details.
 
 ## Refresh Data

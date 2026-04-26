@@ -126,6 +126,104 @@ h2 {
   min-width: 0;
 }
 
+.intel-panel {
+  margin-bottom: 18px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: rgba(25, 26, 23, 0.76);
+  box-shadow: var(--shadow);
+  padding: 14px;
+}
+
+.intel-panel .eyebrow {
+  margin-bottom: 3px;
+  font-size: 0.7rem;
+}
+
+.intel-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 12px;
+}
+
+.intel-card {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: rgba(20, 21, 17, 0.9);
+  padding: 12px;
+}
+
+.intel-card.wide {
+  grid-column: 1 / -1;
+}
+
+.intel-card-head {
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+
+.intel-card h3 {
+  margin: 0;
+  font-size: 1rem;
+}
+
+.intel-card p {
+  margin-bottom: 10px;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.intel-tips,
+.target-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.intel-tips span {
+  border-left: 3px solid var(--teal);
+  background: var(--panel-2);
+  padding: 5px 8px;
+  color: var(--muted);
+  font-size: 0.78rem;
+}
+
+.compact-list {
+  margin: 0 0 12px;
+  padding-left: 18px;
+  color: var(--muted);
+  font-size: 0.86rem;
+}
+
+.compact-list li + li {
+  margin-top: 4px;
+}
+
+.target-chip {
+  min-height: 48px;
+  display: grid;
+  align-content: center;
+  gap: 2px;
+  border-color: var(--line);
+  background: var(--panel-2);
+  color: var(--ink);
+  text-align: left;
+}
+
+.target-chip span {
+  color: var(--muted);
+  font-size: 0.72rem;
+  text-transform: uppercase;
+}
+
+.target-chip:disabled {
+  cursor: not-allowed;
+  opacity: 0.62;
+}
+
 .controls {
   display: grid;
   grid-template-columns: minmax(220px, 1fr) 170px 150px;

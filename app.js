@@ -1,5 +1,73 @@
 (function () {
   const data = window.ARC_DATA;
+  const eventIntel = {
+    maps: [
+      {
+        name: "Dam Battlegrounds",
+        priority: "Best density",
+        url: "https://arcraidershub.com/maps/dam-battlegrounds?filters=first-wave-cache%2Craider-cache&scale=1.00",
+        routes: [
+          "Controlled Access Zone outskirts",
+          "Testing Annex west fields",
+          "Water Treatment elevator road",
+          "Electrical Substation yard",
+          "South swamp outskirts"
+        ]
+      },
+      {
+        name: "Blue Gate",
+        priority: "Fast cluster checks",
+        url: "https://arcraidershub.com/maps/blue-gate?filters=first-wave-cache%2Craider-cache&scale=1.00",
+        routes: [
+          "Olive Grove fields",
+          "Pilgrim's Peak plateau",
+          "Ruined Church cemetery",
+          "Raider's Refuge outskirts",
+          "The Checkpoint roadblock"
+        ]
+      },
+      {
+        name: "Buried City",
+        priority: "Vertical, harder audio",
+        url: "https://arcraidershub.com/maps/buried-city?filters=first-wave-cache%2Craider-cache&scale=1.00",
+        routes: [
+          "Town Hall Plaza",
+          "Space Travel district alleys",
+          "Hospital courtyard",
+          "Marano Park fountain basin",
+          "Metro entrance plazas"
+        ]
+      },
+      {
+        name: "Spaceport",
+        priority: "Spread-out route",
+        url: "https://arcraidershub.com/maps/spaceport?filters=first-wave-cache%2Craider-cache&scale=1.00",
+        routes: [
+          "Trench Towers base",
+          "Shipping warehouse loading areas",
+          "Departure building exterior",
+          "Staff parking collapse zone",
+          "Fuel processing yard"
+        ]
+      }
+    ],
+    targets: [
+      { name: "Tempest", kind: "Blueprint", plannerSearch: "tempest i" },
+      { name: "Bobcat", kind: "Blueprint", plannerSearch: "bobcat i" },
+      { name: "Vulcano", kind: "Blueprint", plannerSearch: "vulcano i" },
+      { name: "Canto SMG", kind: "Blueprint", plannerSearch: "" },
+      { name: "Exodus Modules", kind: "Material", plannerSearch: "exodus modules" },
+      { name: "Magnetic Accelerator", kind: "Material", plannerSearch: "magnetic accelerator" },
+      { name: "Vita Shot", kind: "Healing", plannerSearch: "vita shot" },
+      { name: "Sterilized Bandage", kind: "Healing", plannerSearch: "sterilized bandage" }
+    ],
+    sources: [
+      { name: "Hurricane cache guide", url: "https://www.keengamer.com/articles/guides/arc-raiders-all-first-wave-raider-cache-locations/" },
+      { name: "Interactive cache maps", url: "https://arcraidershub.com/guides/first-wave-caches-guide" },
+      { name: "Raider Cache wiki", url: "https://arcraiders.wiki/wiki/Raider_Cache" },
+      { name: "Cache audio tips", url: "https://allthings.how/how-to-find-first-wave-caches-in-arc-raiders-hurricane-event/" }
+    ]
+  };
   const craftables = data.craftables.slice().sort((a, b) => a.name.localeCompare(b.name));
   const rarityOrder = { Common: 1, Uncommon: 2, Rare: 3, Epic: 4, Legendary: 5 };
   const romanByTier = ["", "I", "II", "III", "IV"];
@@ -9,6 +77,7 @@
 
   const els = {
     catalog: document.querySelector("#catalog"),
+    mapIntel: document.querySelector("#mapIntel"),
     selectedList: document.querySelector("#selectedList"),
     materialsList: document.querySelector("#materialsList"),
     search: document.querySelector("#searchInput"),
@@ -28,6 +97,7 @@
   normalizePlanState();
   initFilters();
   renderSources();
+  renderMapIntel();
   render();
 
   els.search.addEventListener("input", renderCatalog);
@@ -44,6 +114,61 @@
     renderMaterials();
   });
   els.copyPlan.addEventListener("click", copyList);
+
+  function renderMapIntel() {
+    els.mapIntel.innerHTML = `
+      <article class="intel-card wide">
+        <div class="intel-card-head">
+          <h3>How To Use Cache Maps</h3>
+          <span class="pill">Hurricane only</span>
+        </div>
+        <p>First Wave Caches use Raider Cache marker pools during Hurricane conditions. Markers are possible spawns, not guaranteed spawns. Check clusters, stop within 30-50m, and listen for the electric hum.</p>
+        <div class="intel-tips">
+          <span>No Stella Montis</span>
+          <span>Use headphones</span>
+          <span>Safe pocket blueprints</span>
+          <span>Requeue if late</span>
+        </div>
+      </article>
+      ${eventIntel.maps.map((map) => `
+        <article class="intel-card">
+          <div class="intel-card-head">
+            <h3>${escapeHtml(map.name)}</h3>
+            <span class="pill">${escapeHtml(map.priority)}</span>
+          </div>
+          <ul class="compact-list">
+            ${map.routes.map((route) => `<li>${escapeHtml(route)}</li>`).join("")}
+          </ul>
+          <a href="${map.url}" target="_blank" rel="noreferrer">Open cache map</a>
+        </article>
+      `).join("")}
+      <article class="intel-card wide">
+        <div class="intel-card-head">
+          <h3>Cache Loot Targets</h3>
+          <span class="pill">High value</span>
+        </div>
+        <div class="target-grid">
+          ${eventIntel.targets.map((target) => `
+            <button class="target-chip" type="button" data-search="${escapeHtml(target.plannerSearch)}" ${target.plannerSearch ? "" : "disabled"}>
+              <strong>${escapeHtml(target.name)}</strong>
+              <span>${escapeHtml(target.kind)}</span>
+            </button>
+          `).join("")}
+        </div>
+        <div class="source-links">
+          ${eventIntel.sources.map((source) => `<a href="${source.url}" target="_blank" rel="noreferrer">${escapeHtml(source.name)}</a>`).join("")}
+        </div>
+      </article>
+    `;
+
+    els.mapIntel.querySelectorAll(".target-chip:not(:disabled)").forEach((button) => {
+      button.addEventListener("click", () => {
+        els.search.value = button.dataset.search;
+        renderCatalog();
+        document.querySelector(".controls").scrollIntoView({ behavior: "smooth", block: "start" });
+      });
+    });
+  }
 
   function initFilters() {
     const types = unique(craftables.map((item) => item.type)).sort();
