@@ -274,6 +274,7 @@
   const benchUpgrades = [
     {
       name: "Gunsmith",
+      icon: "weapon",
       sourceUrl: "https://thearcraiders.wiki/hideout/weapon-bench",
       note: "Craft and upgrade weapons and weapon mods.",
       levels: [
@@ -282,6 +283,7 @@
     },
     {
       name: "Gear Bench",
+      icon: "gear",
       sourceUrl: "https://thearcraiders.wiki/hideout/equipment-bench",
       note: "Unlocks shields, augments, and combat gear.",
       levels: [
@@ -290,6 +292,7 @@
     },
     {
       name: "Medical Lab",
+      icon: "medical",
       sourceUrl: "https://thearcraiders.wiki/hideout/med-station",
       note: "Unlocks healing and revive supplies.",
       levels: [
@@ -298,6 +301,7 @@
     },
     {
       name: "Explosives Station",
+      icon: "explosive",
       sourceUrl: "https://thearcraiders.wiki/hideout/explosives-bench",
       note: "Unlocks grenades, mines, traps, and heavy explosives.",
       levels: [
@@ -306,6 +310,7 @@
     },
     {
       name: "Refiner",
+      icon: "refiner",
       sourceUrl: "https://thearcraiders.wiki/hideout/refiner",
       note: "Refines raw loot into advanced crafting materials.",
       levels: [
@@ -314,6 +319,7 @@
     },
     {
       name: "Utility Station",
+      icon: "utility",
       sourceUrl: "https://thearcraiders.wiki/hideout/utility-bench",
       note: "Unlocks tools, scanners, deployables, and traversal items.",
       levels: [
@@ -472,6 +478,7 @@
     els.benchUpgrades.innerHTML = benchUpgrades.map((bench) => `
       <article class="bench-card">
         <div class="bench-card-head">
+          <div class="bench-icon bench-icon-${escapeHtml(bench.icon)}">${benchIcon(bench.icon)}</div>
           <div>
             <h3>${escapeHtml(bench.name)}</h3>
             <p>${escapeHtml(bench.note)}</p>
@@ -729,6 +736,18 @@
     els.sourceLinks.innerHTML = data.sources.map((source) =>
       `<a href="${source.url}" target="_blank" rel="noreferrer">${escapeHtml(source.name)}</a>`
     ).join("");
+  }
+
+  function benchIcon(type) {
+    const icons = {
+      weapon: `<svg viewBox="0 0 64 64" aria-hidden="true"><path d="M9 37h26l6-8h14v8h-8l-5 9H27l-4 6H9z"/><path d="M42 29l5-9h8v9z"/></svg>`,
+      gear: `<svg viewBox="0 0 64 64" aria-hidden="true"><path d="M26 7h12l2 8 7 3 7-4 6 10-6 5v6l6 5-6 10-7-4-7 3-2 8H26l-2-8-7-3-7 4-6-10 6-5v-6l-6-5 6-10 7 4 7-3z"/><circle cx="32" cy="32" r="9"/></svg>`,
+      medical: `<svg viewBox="0 0 64 64" aria-hidden="true"><path d="M24 8h16v14h14v16H40v14H24V38H10V22h14z"/></svg>`,
+      explosive: `<svg viewBox="0 0 64 64" aria-hidden="true"><path d="M18 29c8-10 20-10 28 0 8 11 1 27-14 27S10 40 18 29z"/><path d="M31 18l6-9 8 7-8 7z"/><path d="M45 7l4-4M50 15h7M39 4V0"/></svg>`,
+      refiner: `<svg viewBox="0 0 64 64" aria-hidden="true"><path d="M16 8h32v10H16zM21 18h22l6 34H15z"/><path d="M24 30h16M22 40h20"/></svg>`,
+      utility: `<svg viewBox="0 0 64 64" aria-hidden="true"><path d="M39 6l19 19-9 9-6-6-21 24-10-10 24-21-6-6z"/><path d="M11 53l9-9"/></svg>`
+    };
+    return icons[type] || icons.gear;
   }
 
   function showToast(message) {

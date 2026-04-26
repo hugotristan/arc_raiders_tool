@@ -193,6 +193,39 @@ h2 {
   margin-bottom: 8px;
 }
 
+.bench-card-head > div:nth-child(2) {
+  flex: 1;
+  min-width: 0;
+}
+
+.bench-icon {
+  width: 52px;
+  aspect-ratio: 1 / 1;
+  display: grid;
+  place-items: center;
+  flex: 0 0 auto;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: #0c0d0b;
+}
+
+.bench-icon svg {
+  width: 34px;
+  height: 34px;
+  fill: var(--muted);
+  stroke: var(--muted);
+  stroke-width: 3;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.bench-icon-weapon svg { fill: var(--amber); stroke: var(--amber); }
+.bench-icon-gear svg { fill: var(--blue); stroke: var(--blue); }
+.bench-icon-medical svg { fill: var(--green); stroke: var(--green); }
+.bench-icon-explosive svg { fill: var(--red); stroke: var(--red); }
+.bench-icon-refiner svg { fill: var(--epic); stroke: var(--epic); }
+.bench-icon-utility svg { fill: var(--teal); stroke: var(--teal); }
+
 .bench-card-head h3 {
   margin: 0 0 4px;
   font-size: 1rem;
