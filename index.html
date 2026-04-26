@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>ARC Raiders Craft Planner</title>
-    <link rel="stylesheet" href="styles.css?v=20260426-flashpoint-items">
+    <link rel="stylesheet" href="styles.css?v=20260426-material-info">
   </head>
   <body>
     <header class="topbar">
@@ -79,6 +79,15 @@
           <div id="materialsList" class="materials-list"></div>
         </section>
 
+        <section>
+          <div class="section-heading">
+            <h2>Item Info</h2>
+          </div>
+          <div id="materialInfo" class="material-info">
+            <div class="empty">Click any required item to see where to find it.</div>
+          </div>
+        </section>
+
         <section class="source-note">
           <h2>Sources</h2>
           <p>Recipe data is generated from community ARC Raiders wiki pages. Location hints are route guidance, not guaranteed spawn rules, because live loot tables can change.</p>
@@ -90,6 +99,6 @@
     <div id="toast" class="toast" role="status" aria-live="polite"></div>
 
     <script src="arc-data.generated.js?v=20260426-data"></script>
-    <script src="app.js?v=20260426-flashpoint-items"></script>
+    <script src="app.js?v=20260426-material-info"></script>
   </body>
 </html>

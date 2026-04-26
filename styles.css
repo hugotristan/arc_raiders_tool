@@ -371,11 +371,24 @@ select {
   margin: 4px 0 10px;
 }
 
-.recipe span {
+.recipe span,
+.recipe-item {
   background: var(--panel-2);
   border-left: 3px solid var(--soft);
+  border-top: 0;
+  border-right: 0;
+  border-bottom: 0;
+  border-radius: 0;
   padding: 4px 7px;
   font-size: 0.76rem;
+  color: var(--ink);
+  min-height: 0;
+  font-weight: 400;
+  cursor: pointer;
+}
+
+.recipe-item:hover {
+  background: #2a2d25;
 }
 
 .recipe-title {
@@ -510,7 +523,8 @@ select {
   white-space: nowrap;
 }
 
-.material-card {
+.material-card,
+.material-info-card {
   padding: 12px;
   border-left-width: 4px;
 }
@@ -567,6 +581,7 @@ select {
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
+  align-items: center;
 }
 
 a {

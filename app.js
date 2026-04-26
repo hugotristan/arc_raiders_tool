@@ -142,6 +142,7 @@
   const els = {
     catalog: document.querySelector("#catalog"),
     mapIntel: document.querySelector("#mapIntel"),
+    materialInfo: document.querySelector("#materialInfo"),
     selectedList: document.querySelector("#selectedList"),
     materialsList: document.querySelector("#materialsList"),
     search: document.querySelector("#searchInput"),
@@ -370,6 +371,10 @@
         updatePlan(stepper.dataset.id, stepper.dataset.mode || "direct", button.dataset.action === "up" ? 1 : -1);
       });
     });
+
+    els.catalog.querySelectorAll(".recipe-item").forEach((button) => {
+      button.addEventListener("click", () => showMaterialInfo(button.dataset.material));
+    });
   }
 
   function renderSelected() {
@@ -515,6 +520,51 @@
     window.setTimeout(() => els.toast.classList.remove("show"), 1800);
   }
 
+  function showMaterialInfo(name) {
+    const source = materialSources[name] || {};
+    const rarity = source.rarity || materialRarity(name) || "Unknown";
+    const hints = source.hints && source.hints.length
+      ? source.hints
+      : ["No local source notes yet. Use the source link for current drop, trader, and recycling details."];
+
+    els.materialInfo.innerHTML = `
+      <article class="material-info-card rarity-${cssRarity(rarity)}">
+        <div class="material-head">
+          <div>
+            <h3>${escapeHtml(name)}</h3>
+            <span class="pill rarity-label rarity-${cssRarity(rarity)}">${escapeHtml(rarity)}</span>
+          </div>
+        </div>
+        <ul class="hints">
+          ${hints.map((hint) => `<li>${escapeHtml(hint)}</li>`).join("")}
+        </ul>
+        <div class="source-links">
+          ${source.sourceUrl ? `<a href="${source.sourceUrl}" target="_blank" rel="noreferrer">Detailed source page</a>` : ""}
+          <button class="link-button" type="button" data-fill-search="${escapeHtml(name)}">Search planner</button>
+        </div>
+      </article>
+    `;
+
+    const searchButton = els.materialInfo.querySelector("[data-fill-search]");
+    if (searchButton) {
+      searchButton.addEventListener("click", () => {
+        els.search.value = searchButton.dataset.fillSearch;
+        renderCatalog();
+        document.querySelector(".controls").scrollIntoView({ behavior: "smooth", block: "start" });
+      });
+    }
+
+    els.materialInfo.scrollIntoView({ behavior: "smooth", block: "nearest" });
+  }
+
+  function materialRarity(name) {
+    for (const item of craftables) {
+      const material = item.materials.find((entry) => entry.name === name);
+      if (material) return material.rarity;
+    }
+    return null;
+  }
+
   function normalizePlanState() {
     const nextPlan = {};
     Object.entries(state.plan || {}).forEach(([key, qty]) => {
@@ -588,7 +638,7 @@
 
   function formatRecipe(materials) {
     return materials.map((material) =>
-      `<span class="rarity-${cssRarity(material.rarity)}">${escapeHtml(material.name)} x${material.qty}</span>`
+      `<button class="recipe-item rarity-${cssRarity(material.rarity)}" type="button" data-material="${escapeHtml(material.name)}">${escapeHtml(material.name)} x${material.qty}</button>`
     ).join("");
   }
 
