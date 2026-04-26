@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>ARC Raiders Craft Planner</title>
-    <link rel="stylesheet" href="styles.css?v=20260426-mobile-nav2">
+    <link rel="stylesheet" href="styles.css?v=20260426-page-layout">
   </head>
   <body>
     <header class="topbar">
@@ -17,15 +17,15 @@
         <button id="copyPlan" type="button" title="Copy shopping list">Copy list</button>
       </div>
     </header>
-    <nav class="quick-nav" aria-label="Quick navigation">
-      <a href="#planner">Plan</a>
-      <a href="#collect">Collect</a>
-      <a href="#catalog">Catalog</a>
-      <a href="#intel">Intel</a>
+    <nav class="quick-nav" aria-label="Primary navigation">
+      <a href="#catalog-page" data-view-link="catalog-page">Catalog</a>
+      <a href="#plan-page" data-view-link="plan-page">Plan</a>
+      <a href="#intel-page" data-view-link="intel-page">Intel</a>
+      <a href="#bench-page" data-view-link="bench-page">Benches</a>
     </nav>
 
-    <main class="layout">
-      <section class="catalog-panel">
+    <main class="app-shell">
+      <section id="catalog-page" class="view-page catalog-panel active">
         <div id="catalog-tools" class="controls">
           <label class="search">
             <span>Search</span>
@@ -41,31 +41,25 @@
           </label>
         </div>
         <div id="catalog" class="catalog" aria-live="polite"></div>
-
-        <details id="intel" class="info-drawer">
-          <summary>
-            <span>
-              <span class="eyebrow">Event & Map Intel</span>
-              <strong>Hurricane First Wave Caches</strong>
-            </span>
-            <span class="summary-hint">Open maps</span>
-          </summary>
-          <div id="mapIntel" class="intel-grid"></div>
-        </details>
-
-        <details id="benches" class="info-drawer">
-          <summary>
-            <span>
-              <span class="eyebrow">Hideout</span>
-              <strong>Bench Upgrades</strong>
-            </span>
-            <span class="summary-hint">Open upgrades</span>
-          </summary>
-          <div id="benchUpgrades" class="bench-grid"></div>
-        </details>
       </section>
 
-      <aside id="planner" class="plan-panel">
+      <section id="intel-page" class="view-page info-page">
+        <div class="page-heading">
+          <p class="eyebrow">Event & Map Intel</p>
+          <h2>Hurricane First Wave Caches</h2>
+        </div>
+          <div id="mapIntel" class="intel-grid"></div>
+      </section>
+
+      <section id="bench-page" class="view-page info-page">
+        <div class="page-heading">
+          <p class="eyebrow">Hideout</p>
+          <h2>Bench Upgrades</h2>
+        </div>
+          <div id="benchUpgrades" class="bench-grid"></div>
+      </section>
+
+      <section id="plan-page" class="view-page plan-panel">
         <section class="summary-band">
           <div>
             <span id="selectedCount" class="metric">0</span>
@@ -111,12 +105,12 @@
           <p>Recipe data is generated from community ARC Raiders wiki pages. Location hints are route guidance, not guaranteed spawn rules, because live loot tables can change.</p>
           <div id="sourceLinks" class="source-links"></div>
         </section>
-      </aside>
+      </section>
     </main>
 
     <div id="toast" class="toast" role="status" aria-live="polite"></div>
 
     <script src="arc-data.generated.js?v=20260426-data"></script>
-    <script src="app.js?v=20260426-canto-rare"></script>
+    <script src="app.js?v=20260426-page-layout"></script>
   </body>
 </html>

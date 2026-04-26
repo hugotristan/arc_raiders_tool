@@ -404,7 +404,9 @@
     clearPlan: document.querySelector("#clearPlan"),
     copyPlan: document.querySelector("#copyPlan"),
     resetOwned: document.querySelector("#resetOwned"),
-    toast: document.querySelector("#toast")
+    toast: document.querySelector("#toast"),
+    viewPages: document.querySelectorAll(".view-page"),
+    navLinks: document.querySelectorAll("[data-view-link]")
   };
 
   normalizePlanState();
@@ -413,6 +415,7 @@
   renderMapIntel();
   renderBenchUpgrades();
   render();
+  syncView();
 
   els.search.addEventListener("input", renderCatalog);
   els.type.addEventListener("change", renderCatalog);
@@ -428,6 +431,35 @@
     renderMaterials();
   });
   els.copyPlan.addEventListener("click", copyList);
+  window.addEventListener("hashchange", syncView);
+
+  function syncView() {
+    const aliases = {
+      catalog: "catalog-page",
+      planner: "plan-page",
+      collect: "plan-page",
+      intel: "intel-page",
+      benches: "bench-page"
+    };
+    const requested = window.location.hash.replace("#", "");
+    const viewId = aliases[requested] || requested || "catalog-page";
+    setActiveView(document.getElementById(viewId) ? viewId : "catalog-page", false);
+  }
+
+  function setActiveView(viewId, updateHash = true) {
+    els.viewPages.forEach((page) => {
+      page.classList.toggle("active", page.id === viewId);
+    });
+    els.navLinks.forEach((link) => {
+      const isActive = link.dataset.viewLink === viewId;
+      link.classList.toggle("active", isActive);
+      if (isActive) link.setAttribute("aria-current", "page");
+      else link.removeAttribute("aria-current");
+    });
+    if (updateHash && window.location.hash !== `#${viewId}`) {
+      window.location.hash = viewId;
+    }
+  }
 
   function renderMapIntel() {
     const defaultMap = eventIntel.maps[0];
@@ -811,6 +843,7 @@
   }
 
   function showMaterialInfo(name) {
+    setActiveView("plan-page");
     const source = materialSources[name] || {};
     const rarity = source.rarity || materialRarity(name) || "Unknown";
     const image = materialImage(name, source);
