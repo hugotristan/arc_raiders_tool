@@ -19,11 +19,9 @@
 body {
   min-height: 100vh;
   margin: 0;
-  display: grid;
-  place-items: center;
   color: var(--ink);
   font-family: "Segoe UI", Inter, system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
-  background: #ded0d0;
+  background: var(--lavender);
 }
 
 h1,
@@ -32,30 +30,27 @@ p {
 }
 
 .app-shell {
-  width: min(100%, 520px);
+  width: 100%;
   min-height: 100vh;
-  display: grid;
-  place-items: center;
-  padding: 18px;
+  padding: 0;
 }
 
 .app-screen {
   position: relative;
-  width: min(100%, 390px);
-  min-height: min(760px, calc(100vh - 36px));
+  width: 100%;
+  min-height: 100vh;
   display: block;
   overflow: hidden;
-  border-radius: 8px;
+  border-radius: 0;
   background: var(--lavender);
-  box-shadow: var(--shadow);
 }
 
 .app-screen::before {
   position: absolute;
-  right: -28%;
-  top: -15%;
-  width: 112%;
-  height: 54%;
+  right: -10%;
+  top: -18%;
+  width: 86%;
+  height: 58%;
   content: "";
   border-radius: 0 0 0 65%;
   background: var(--purple);
@@ -65,9 +60,9 @@ p {
 
 .app-screen::after {
   position: absolute;
-  right: -36%;
-  bottom: 18%;
-  width: 92%;
+  right: -18%;
+  bottom: 12%;
+  width: min(72vw, 720px);
   aspect-ratio: 1;
   content: "";
   border-radius: 50%;
@@ -83,8 +78,8 @@ p {
 .art-panel::before,
 .art-panel::after {
   position: absolute;
-  width: 86px;
-  height: 28px;
+  width: clamp(86px, 12vw, 150px);
+  height: clamp(28px, 4vw, 48px);
   content: "";
   border-radius: 999px 999px 0 0;
   background:
@@ -96,12 +91,12 @@ p {
 
 .art-panel::before {
   left: -18px;
-  top: 72px;
+  top: clamp(58px, 10vh, 120px);
 }
 
 .art-panel::after {
   left: -20px;
-  bottom: 184px;
+  bottom: clamp(180px, 28vh, 320px);
 }
 
 .hero-panel {
@@ -110,22 +105,26 @@ p {
   align-self: center;
   display: grid;
   justify-items: center;
-  padding: 92px 30px 24px;
+  width: min(100%, 960px);
+  min-height: 100vh;
+  align-content: center;
+  margin: 0 auto;
+  padding: clamp(36px, 6vw, 72px) clamp(22px, 6vw, 64px);
   text-align: center;
 }
 
 h1 {
-  max-width: 9ch;
+  max-width: none;
   margin-bottom: 22px;
   color: #fff;
-  font-size: clamp(2.7rem, 14vw, 4.35rem);
+  font-size: clamp(3.2rem, 9vw, 7rem);
   line-height: 0.9;
   letter-spacing: 0;
   text-shadow: 0 4px 18px rgba(31, 18, 96, 0.32);
 }
 
 .elapsed-time {
-  width: 100%;
+  width: min(100%, 760px);
   display: block;
   border: 1px solid var(--line);
   border-radius: 8px;
@@ -133,7 +132,7 @@ h1 {
   background: rgba(55, 33, 135, 0.42);
   box-shadow: 0 12px 32px rgba(31, 18, 96, 0.18);
   color: #fff;
-  font-size: clamp(2rem, 10vw, 3rem);
+  font-size: clamp(2.2rem, 7vw, 5.4rem);
   line-height: 1;
   font-variant-numeric: tabular-nums;
   text-shadow: 0 3px 18px rgba(0, 0, 0, 0.34);
@@ -141,7 +140,7 @@ h1 {
 }
 
 .time-labels {
-  width: 100%;
+  width: min(100%, 760px);
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 4px;
@@ -153,10 +152,9 @@ h1 {
 }
 
 .meme-image {
-  width: 100%;
-  height: min(50vh, 360px);
-  min-height: 300px;
-  margin-top: 24px;
+  width: min(100%, 860px);
+  height: clamp(280px, 48vh, 520px);
+  margin-top: clamp(22px, 4vh, 36px);
   background-image: var(--meme-background);
   background-repeat: no-repeat;
   background-size: contain;
@@ -177,23 +175,33 @@ h1 {
   white-space: nowrap;
 }
 
-@media (max-width: 520px) {
-  .app-shell {
-    padding: 0;
-  }
-
-  .app-screen {
-    width: 100%;
-    min-height: 100vh;
-    border-radius: 0;
-  }
-
+@media (max-width: 620px) {
   .hero-panel {
-    padding-inline: 24px;
+    justify-items: center;
+    min-height: 100vh;
+    padding: 68px 22px 28px;
+  }
+
+  .app-screen::before {
+    right: -28%;
+    top: -14%;
+    width: 112%;
+    height: 52%;
+  }
+
+  .app-screen::after {
+    right: -36%;
+    bottom: 18%;
+    width: 92%;
+  }
+
+  h1 {
+    max-width: 9ch;
+    font-size: clamp(2.7rem, 14vw, 4.35rem);
   }
 
   .meme-image {
-    height: 46vh;
+    height: 44vh;
     min-height: 280px;
   }
 }
