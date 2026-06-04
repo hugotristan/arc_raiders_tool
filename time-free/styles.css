@@ -1,0 +1,199 @@
+:root {
+  color-scheme: dark;
+  --ink: #ffffff;
+  --muted: rgba(255, 255, 255, 0.74);
+  --lavender: #8587f2;
+  --lavender-soft: #a5a6ff;
+  --purple: #39218a;
+  --purple-button: #5931a4;
+  --panel: rgba(255, 255, 255, 0.13);
+  --line: rgba(255, 255, 255, 0.26);
+  --shadow: 0 28px 80px rgba(28, 18, 92, 0.34);
+  --meme-background: url("assets/estonia-evening-clock.png");
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  min-height: 100vh;
+  margin: 0;
+  display: grid;
+  place-items: center;
+  color: var(--ink);
+  font-family: "Segoe UI", Inter, system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  background: #ded0d0;
+}
+
+h1,
+p {
+  margin-top: 0;
+}
+
+.app-shell {
+  width: min(100%, 520px);
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 18px;
+}
+
+.app-screen {
+  position: relative;
+  width: min(100%, 390px);
+  min-height: min(760px, calc(100vh - 36px));
+  display: block;
+  overflow: hidden;
+  border-radius: 8px;
+  background: var(--lavender);
+  box-shadow: var(--shadow);
+}
+
+.app-screen::before {
+  position: absolute;
+  right: -28%;
+  top: -15%;
+  width: 112%;
+  height: 54%;
+  content: "";
+  border-radius: 0 0 0 65%;
+  background: var(--purple);
+  transform: rotate(-13deg);
+  transform-origin: center;
+}
+
+.app-screen::after {
+  position: absolute;
+  right: -36%;
+  bottom: 18%;
+  width: 92%;
+  aspect-ratio: 1;
+  content: "";
+  border-radius: 50%;
+  background: rgba(165, 166, 255, 0.58);
+}
+
+.art-panel {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.art-panel::before,
+.art-panel::after {
+  position: absolute;
+  width: 86px;
+  height: 28px;
+  content: "";
+  border-radius: 999px 999px 0 0;
+  background:
+    radial-gradient(circle at 20% 100%, rgba(255, 255, 255, 0.62) 0 18px, transparent 19px),
+    radial-gradient(circle at 52% 100%, rgba(255, 255, 255, 0.62) 0 26px, transparent 27px),
+    radial-gradient(circle at 82% 100%, rgba(255, 255, 255, 0.62) 0 16px, transparent 17px);
+  opacity: 0.72;
+}
+
+.art-panel::before {
+  left: -18px;
+  top: 72px;
+}
+
+.art-panel::after {
+  left: -20px;
+  bottom: 184px;
+}
+
+.hero-panel {
+  position: relative;
+  z-index: 1;
+  align-self: center;
+  display: grid;
+  justify-items: center;
+  padding: 92px 30px 24px;
+  text-align: center;
+}
+
+h1 {
+  max-width: 9ch;
+  margin-bottom: 22px;
+  color: #fff;
+  font-size: clamp(2.7rem, 14vw, 4.35rem);
+  line-height: 0.9;
+  letter-spacing: 0;
+  text-shadow: 0 4px 18px rgba(31, 18, 96, 0.32);
+}
+
+.elapsed-time {
+  width: 100%;
+  display: block;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 12px 10px;
+  background: rgba(55, 33, 135, 0.42);
+  box-shadow: 0 12px 32px rgba(31, 18, 96, 0.18);
+  color: #fff;
+  font-size: clamp(2rem, 10vw, 3rem);
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+  text-shadow: 0 3px 18px rgba(0, 0, 0, 0.34);
+  backdrop-filter: blur(6px);
+}
+
+.time-labels {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 4px;
+  margin-top: 9px;
+  color: rgba(255, 255, 255, 0.72);
+  font-size: 0.62rem;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.meme-image {
+  width: 100%;
+  height: min(50vh, 360px);
+  min-height: 300px;
+  margin-top: 24px;
+  background-image: var(--meme-background);
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+}
+
+.meme-link {
+  max-width: 100%;
+  margin-top: 10px;
+  overflow: hidden;
+  color: rgba(255, 255, 255, 0.88);
+  font-size: 0.82rem;
+  font-weight: 800;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 4px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+@media (max-width: 520px) {
+  .app-shell {
+    padding: 0;
+  }
+
+  .app-screen {
+    width: 100%;
+    min-height: 100vh;
+    border-radius: 0;
+  }
+
+  .hero-panel {
+    padding-inline: 24px;
+  }
+
+  .meme-image {
+    height: 46vh;
+    min-height: 280px;
+  }
+}

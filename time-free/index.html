@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#8587f2">
+    <meta name="description" content="Time Free counts elapsed time with a fresh meme every refresh.">
+    <link rel="manifest" href="manifest.webmanifest">
+    <link rel="icon" href="assets/time-free-icon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="assets/time-free-icon.svg">
+    <title>Time Free</title>
+    <link rel="stylesheet" href="styles.css?v=time-free-memes">
+  </head>
+  <body>
+    <main class="app-shell" aria-labelledby="pageTitle">
+      <section class="app-screen">
+        <div class="art-panel" aria-hidden="true"></div>
+
+        <section class="hero-panel" aria-label="Elapsed time">
+          <h1 id="pageTitle">Time Free</h1>
+          <strong id="elapsedTime" class="elapsed-time">00:00:00:00</strong>
+          <div class="time-labels" aria-hidden="true">
+            <span>Days</span>
+            <span>Hours</span>
+            <span>Minutes</span>
+            <span>Seconds</span>
+          </div>
+
+          <div class="meme-image" aria-hidden="true"></div>
+          <a id="memeCredit" class="meme-link" href="https://www.reddit.com/r/memes/" target="_blank" rel="noreferrer">
+            Open meme
+          </a>
+        </section>
+      </section>
+    </main>
+
+    <script src="app.js?v=time-free-memes"></script>
+  </body>
+</html>
