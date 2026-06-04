@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <rect width="512" height="512" rx="112" fill="#8587f2"/>
+  <path d="M512 0v292c-77 16-154-14-192-79-41-70-116-96-188-70C80 162 36 161 0 145V0h512z" fill="#39218a"/>
+  <circle cx="414" cy="358" r="152" fill="#a5a6ff" opacity=".72"/>
+  <path d="M0 362c38-23 89-26 130-6 54 27 118 20 164-17 54-43 133-36 178 16v157H0V362z" fill="#706de9" opacity=".88"/>
+  <text x="256" y="246" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="82" font-weight="800" fill="#fff">TF</text>
+</svg>
